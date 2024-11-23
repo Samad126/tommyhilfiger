@@ -1,0 +1,88 @@
+:root {
+    --main-color: #000c2d;
+}
+
+header {
+    position: relative;
+}
+
+#topText {
+    background-color: var(--main-color);
+    margin: 0;
+    text-align: center;
+    color: white;
+    padding: 12px 0;
+}
+
+#searchCatBtns>button,
+#searchCatBtns>a {
+    background-color: white;
+    color: var(--main-color);
+    font-size: 1.2em;
+}
+
+#desltopMainLogo,
+#locationBtn,
+#desktopNav {
+    display: none;
+}
+
+#locationBtn{
+    color: var(--main-color);
+}
+
+#desltopMainLogo > img{
+    height: 15px;
+}
+
+.moreCat{
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height ease-in-out;
+    transition-duration: .3s;
+    transition-delay: 0s;
+    width: 100%;
+    position: absolute;
+    top: 100%; 
+    background-color: white;
+    z-index: 1;
+    left: 0;
+}
+
+.cat{
+    list-style: none;
+}
+
+.cat > a{
+    color: var(--main-color);
+    padding: 0 20px;
+}
+
+.cat:hover{
+    .moreCat{
+        max-height: 250px;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    #mobileLogo {
+        display: none;
+    }
+
+    #desltopMainLogo,
+    #desktopNav {
+        display: initial;
+    }
+
+    #locationBtn{
+        display: flex;
+    }
+
+    header {
+        max-width: 1920px;
+    }
+
+    #topHeader{
+        padding: 0 20px;
+    }
+}
