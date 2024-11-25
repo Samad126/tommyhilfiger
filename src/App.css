@@ -1,66 +1,20 @@
-.accordion-button:not(.collapsed){
-    color: initial;
-    background-color: initial;
-    /* box-shadow: initial; */
-}
-
-.custom-accordion-item {
-    border: none;
-    margin: 0;
-}
-
-.accordion-header-content {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    font-weight: bold;
-    color: #0a2a5e;
-}
-
-.accordion-button {
-    background-color: transparent;
-    border: none;
-    color: #0a2a5e;
-    font-weight: bold;
-    box-shadow: none;
-    padding: 10px 0;
-}
-
-.accordion-button:focus {
-    box-shadow: none;
-}
-
-.accordion-button::after {
-    display: none !important;
-}
-
-.accordion-body {
-    padding: 10px 15px;
-    color: #333;
-}
-
-.accordion-item + .accordion-item {
-    border-top: 1px solid #0a2a5e;
-}
-
-/* Sub-item list styling */
-.sub-item-list {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-}
-
-.sub-item {
-    color: #0a2a5e;
-    font-weight: normal;
-    padding: 5px 0;
-    font-size: 0.9em;
-}
-
 button{
     border: 0;
 }
 
 a{
     text-decoration: none;
+}
+
+.whiteTxt{
+    color: white;
+}
+
+.blueBorder{
+    border-color: #00174f !important;
+}
+
+.bordered{
+    border-bottom: 1px solid rgba(255, 255, 255, .5);
+    padding-bottom: 12px;
 }

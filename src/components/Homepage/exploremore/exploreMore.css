@@ -1,0 +1,52 @@
+:root {
+    --dark-color: #000c2d;
+    --light-color: #00174f;
+}
+
+#exploreMore {
+    margin: 48px 0;
+
+    h2 {
+        text-align: center;
+        font-weight: 400;
+    }
+
+    div {
+        padding: 0 10px;
+        gap: 10px 0;
+        margin: 40px auto 0 auto;
+        max-width: 325px;
+
+        a {
+            width: fit-content;
+            margin: auto;
+            text-align: center;
+        }
+    }
+
+    * {
+        color: var(--light-color);
+    }
+}
+
+@media screen and (min-width:768px) {
+    #exploreMore {
+        max-width: 860px;
+        margin: 48px auto;
+        padding: 0 10px;
+        
+        h2 {
+            text-align: center;
+            font-weight: 400;
+            font-size: 2.5em;
+        }
+
+        div {
+            max-width: initial;
+            a {
+                width: fit-content;
+                font-size: 1.25em;
+            }
+        }
+    }
+}

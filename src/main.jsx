@@ -1,9 +1,11 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Root from './components/Root'
-import Homepage from './pages/Homepage'
+
 import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import ErrorElement from './components/ErrorElement.jsx'
+import Homepage from './pages/homepage/Homepage.jsx'
 
 const router = createBrowserRouter([
   {
@@ -15,6 +17,10 @@ const router = createBrowserRouter([
         element: <Homepage />
       },
     ]
+  },
+  {
+    path: "*",
+    element: <ErrorElement />
   }
 ], {
   future: {

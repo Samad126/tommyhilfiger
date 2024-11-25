@@ -1,13 +1,21 @@
 :root {
-    --main-color: #000c2d;
+    --dark-color: #000c2d;
+    --light-color: #00174f;
 }
 
 header {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 2;
+}
+
+header>div {
     position: relative;
 }
 
 #topText {
-    background-color: var(--main-color);
+    background-color: var(--dark-color);
     margin: 0;
     text-align: center;
     color: white;
@@ -17,25 +25,26 @@ header {
 #searchCatBtns>button,
 #searchCatBtns>a {
     background-color: white;
-    color: var(--main-color);
+    color: var(--dark-color);
     font-size: 1.2em;
 }
 
 #desltopMainLogo,
 #locationBtn,
-#desktopNav {
+#desktopNav,
+#profileBtn {
     display: none;
 }
 
-#locationBtn{
-    color: var(--main-color);
+#locationBtn {
+    color: var(--dark-color);
 }
 
-#desltopMainLogo > img{
+#desltopMainLogo>img {
     height: 15px;
 }
 
-.moreCat{
+.moreCat {
     max-height: 0;
     overflow: hidden;
     transition: max-height ease-in-out;
@@ -43,29 +52,29 @@ header {
     transition-delay: 0s;
     width: 100%;
     position: absolute;
-    top: 100%; 
+    top: 100%;
     background-color: white;
-    z-index: 1;
+    z-index: 2;
     left: 0;
 }
 
-.cat{
+.cat {
     list-style: none;
+    padding: 0 20px 10px 20px;
 }
 
-.cat > a{
-    color: var(--main-color);
-    padding: 0 20px;
+.cat>a {
+    color: var(--dark-color);
 }
 
-.cat:hover{
-    .moreCat{
+.cat:hover {
+    .moreCat {
         max-height: 250px;
     }
 }
 
 @media screen and (min-width: 992px) {
-    #mobileLogo {
+    #toHomeImg {
         display: none;
     }
 
@@ -74,15 +83,24 @@ header {
         display: initial;
     }
 
-    #locationBtn{
+    #locationBtn {
         display: flex;
     }
 
-    header {
+    header > div {
         max-width: 1920px;
+        margin: auto;
     }
 
-    #topHeader{
+    #topHeader {
         padding: 0 20px;
+    }
+
+    #hamburgerBtn {
+        display: none;
+    }
+
+    #profileBtn {
+        display: initial;
     }
 }

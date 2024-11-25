@@ -1,0 +1,37 @@
+.imageLinks{
+    gap: 10px 0;
+}
+
+.flinks {
+    width: 47%;
+    position: relative;
+
+    img {
+        width: 100%;
+    }
+
+    span {
+        position: absolute;
+        z-index: 1;
+        left: 50%;
+        bottom: 5%;
+        transform: translateX(-50%);
+        min-width: 120px;
+        text-align: center;
+
+        &:hover{
+            text-decoration: underline;
+        }
+    }
+
+}
+
+@media screen and (min-width:768px) {
+    .flinks{
+        width: 24%;
+    }
+
+    .imageLinks{
+        gap: 0;
+    }
+}

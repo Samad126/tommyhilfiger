@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Accordion } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import "../accordion.css";
+
 function AccordionSection() {
     const [activeKeys, setActiveKeys] = useState([]);
 

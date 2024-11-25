@@ -1,0 +1,34 @@
+#blackFriday {
+    position: relative;
+}
+
+#blackFriday {
+    img {
+        width: 100%;
+        object-fit: cover;
+    }
+}
+
+#fridayMain {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+
+    h2{
+        margin: 20px 0;
+    }
+
+    div {
+        min-width: 220px;
+    }
+}
+
+@media screen and (min-width:768px) {
+    #blackFriday {
+        img {
+            max-height: 30vh;
+        }
+    }
+}
