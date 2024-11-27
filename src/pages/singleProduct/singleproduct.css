@@ -1,0 +1,114 @@
+:root {
+    --dark-color: #000c2d;
+    --light-color: #00174f;
+}
+
+#companyName {
+    font-size: .875em;
+    color: var(--light-color);
+}
+
+.itemTitle {
+    font-size: 14px;
+    color: var(--light-color);
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.highfont {
+    font-size: 16px;
+}
+
+#members {
+    border: 1px solid var(--light-color);
+    border-radius: 3px;
+    padding: 20px;
+
+    img {
+        height: 5vh;
+    }
+
+    p {
+        font-size: 14px;
+    }
+}
+
+.specificTitle {
+    font-size: 0.875em;
+}
+
+.colorName {
+    color: var(--light-color);
+}
+
+.productColor {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+.productColor,
+.productColor>div {
+    border-radius: 50%;
+}
+
+.productColor>div {
+    background-color: black;
+    width: 80%;
+    height: 80%;
+}
+
+#sizes>button {
+    padding: 10px 30px;
+    background-color: white;
+    border-radius: 3px;
+    border: 1px solid #d3d6da;
+    color: var(--light-color);
+}
+
+#addToCartButton {
+    background-color: var(--dark-color);
+    color: white;
+    padding: 15px 0;
+}
+
+.shippingDetail {
+    color: #484848;
+}
+
+.detailedAccordion {
+    p {
+        color: var(--light-color);
+    }
+}
+
+#desktopImageGallery {
+    display: none;
+    width: 62%;
+
+    div{
+        gap: 15px 0;
+    }
+
+    img{
+        width: 49%;
+    }
+}
+
+@media screen and (min-width:992px) {
+    .mobileDetailed {
+        display: none;
+    }
+
+    #desktopImageGallery {
+        display: initial;
+    }
+
+    #infoPart {
+        width: 35%;
+    }
+}

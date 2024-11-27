@@ -54,7 +54,7 @@ function Footer() {
           <FaPinterest />
           <FaYoutube />
         </div>
-        <div id="desktopFooterList">
+        <div id="desktopFooterList" className="pe-5">
           <div>
             <Link>Help & Support</Link>
             <Link>Customer Service</Link>

@@ -1,0 +1,167 @@
+:root {
+    --dark-color: #000c2d;
+    --light-color: #00174f;
+}
+
+#productItems {
+    gap: 20px 0;
+}
+
+#productItems>div {
+    width: 48%;
+}
+
+#productItems>div>a {
+    position: relative;
+}
+
+.prodItemTitle {
+    font-size: 12px;
+    color: var(--light-color);
+}
+
+.price {
+    font-size: 12px;
+}
+
+.prevPrice {
+    color: #484848;
+}
+
+.newPrice {
+    color: var(--light-color);
+}
+
+.discount,
+.discountDesc {
+    color: #cc0c2f;
+    font-size: 12px;
+}
+
+.price,
+.discountDesc {
+    margin-bottom: 10px;
+}
+
+#productItems>div .carousel-control-next,
+#productItems>div .carousel-control-prev {
+    display: none;
+}
+
+#productItems>div .carousel-indicators {
+    display: none;
+}
+
+#productItems>div:hover .carousel-indicators {
+    display: flex;
+}
+
+
+.filterSortBtn {
+    background-color: white;
+    color: var(--light-color);
+    font-weight: 400;
+
+    svg {
+        scale: 1.5;
+    }
+}
+
+#filters {
+    button {
+        background-color: var(--light-color);
+        color: white;
+        width: 65px;
+        padding: 10px 8px;
+        border-radius: 35px;
+        font-size: 14px;
+    }
+}
+
+#clearAllBtn {
+    background-color: white;
+    text-decoration: underline;
+    color: #484848;
+    font-size: 12px;
+}
+
+.breadcrumb-item>a {
+    color: var(--light-color);
+}
+
+.breadcrumb-item.active {
+    color: var(--light-color);
+}
+
+#desktopFilterSection {
+    display: none !important;
+}
+
+#categsBtns {
+    button {
+        min-width: 120px;
+        padding: 5px 10px;
+        border: 1px solid rgba(72, 72, 72, .2);
+        background-color: white;
+        border-radius: 35px;
+    }
+}
+
+#seperator {
+    width: 1px;
+    height: 20px;
+    background-color: #484848;
+}
+
+.desktopSort {
+
+    p,
+    label {
+        color: #484848;
+    }
+
+    select {
+        padding: 10px;
+        border-radius: 35px;
+        outline: 0;
+    }
+}
+
+.quickViewBtn {
+    background-color: rgba(255, 255, 255, .8);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    padding: 5px;
+    color: var(--light-color);
+    min-width: 50%;
+    border-radius: 5px;
+    display: none;
+}
+
+@media screen and (min-width:768px) {
+
+    #productItems>div:hover .carousel-control-next,
+    #productItems>div:hover .carousel-control-prev {
+        display: flex;
+    }
+
+    #productItems>div:hover .quickViewBtn {
+        display: initial;
+    }
+
+
+    #mobileFilterSection {
+        display: none !important;
+    }
+
+    #desktopFilterSection {
+        display: flex !important;
+    }
+
+    #productItems>div {
+        width: 24%;
+    }
+}

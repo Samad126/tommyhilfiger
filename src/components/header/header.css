@@ -40,6 +40,10 @@ header>div {
     color: var(--dark-color);
 }
 
+#desltopMainLogo{
+    padding-left: 110px;
+}
+
 #desltopMainLogo>img {
     height: 15px;
 }
@@ -88,7 +92,7 @@ header>div {
     }
 
     header > div {
-        max-width: 1920px;
+        max-width: 1450px;
         margin: auto;
     }
 

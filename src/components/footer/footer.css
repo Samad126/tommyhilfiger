@@ -7,6 +7,11 @@ footer {
     padding: 24px;
 }
 
+footer > div:nth-child(2){
+    max-width: 1450px;
+    margin: auto;
+}
+
 #imgJoin {
     gap: 20vw;
 }

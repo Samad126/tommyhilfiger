@@ -1,0 +1,14 @@
+:root {
+    --dark-color: #000c2d;
+    --light-color: #00174f;
+}
+
+.subcategLinks a {
+    color: #484848;
+}
+
+#categTitle{
+    color: var(--light-color);
+    font-size: 22px;
+    font-weight: 700;
+}

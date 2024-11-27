@@ -1,20 +1,33 @@
-button{
+button {
     border: 0;
 }
 
-a{
+a {
     text-decoration: none;
 }
 
-.whiteTxt{
+.whiteTxt {
     color: white;
 }
 
-.blueBorder{
+.blueBorder {
     border-color: #00174f !important;
 }
 
-.bordered{
+.grayUnderline{
+    color: #484848;
+    border-bottom: 1px solid #484848;
+    background-color: white;
+}
+
+.bordered {
     border-bottom: 1px solid rgba(255, 255, 255, .5);
     padding-bottom: 12px;
+}
+
+@media screen and (min-width:768px) {
+    .mainContainer {
+        max-width: 1450px;
+        margin: auto;
+    }
 }
