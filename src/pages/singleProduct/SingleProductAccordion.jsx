@@ -54,19 +54,21 @@ function AccordionSection() {
     };
 
     return (
-        <Accordion activeKey={activeKeys}>
-            {data.map((section, index) => (
-                <Accordion.Item key={index} eventKey={index.toString()} className="custom-accordion-item">
-                    <Accordion.Header onClick={() => handleToggle(index)}>
-                        <div className="accordion-header-content">
-                            <span>{section.title}</span>
-                            <span>{activeKeys.includes(index.toString()) ? "-" : "+"}</span>
-                        </div>
-                    </Accordion.Header>
-                    <Accordion.Body>{section.content}</Accordion.Body>
-                </Accordion.Item>
-            ))}
-        </Accordion>
+        <div className="homepageAccordion">
+            <Accordion activeKey={activeKeys}>
+                {data.map((section, index) => (
+                    <Accordion.Item key={index} eventKey={index.toString()} className="custom-accordion-item">
+                        <Accordion.Header onClick={() => handleToggle(index)}>
+                            <div className="accordion-header-content">
+                                <span>{section.title}</span>
+                                <span>{activeKeys.includes(index.toString()) ? "-" : "+"}</span>
+                            </div>
+                        </Accordion.Header>
+                        <Accordion.Body>{section.content}</Accordion.Body>
+                    </Accordion.Item>
+                ))}
+            </Accordion>
+        </div>
     );
 }
 

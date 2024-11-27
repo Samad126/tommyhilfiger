@@ -1,6 +1,8 @@
 import { Offcanvas } from "react-bootstrap"
+import { Link } from "react-router-dom"
+import demoforcart from "../../assets/demoforcart.webp"
 
-function Category({show, handleClose}) {
+function Quickview({show, handleClose}) {
     return (
         <div>
             <Offcanvas show={show} onHide={handleClose} placement="end">
@@ -105,4 +107,4 @@ function Category({show, handleClose}) {
     )
 }
 
-export default Category
+export default Quickview

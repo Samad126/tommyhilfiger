@@ -91,7 +91,7 @@ header>div {
         display: flex;
     }
 
-    header > div {
+    #topHeader {
         max-width: 1450px;
         margin: auto;
     }

@@ -1,15 +1,15 @@
-.accordion-button:not(.collapsed){
+.homepageAccordion .accordion-button:not(.collapsed) {
     color: initial;
     background-color: initial;
     /* box-shadow: initial; */
 }
 
-.custom-accordion-item {
+.homepageAccordion .custom-accordion-item {
     border: none;
     margin: 0;
 }
 
-.accordion-header-content {
+.homepageAccordion .accordion-header-content {
     display: flex;
     justify-content: space-between;
     width: 100%;
@@ -17,7 +17,7 @@
     color: #0a2a5e;
 }
 
-.accordion-button {
+.homepageAccordion .accordion-button {
     background-color: transparent;
     border: none;
     color: #0a2a5e;
@@ -26,20 +26,20 @@
     padding: 20px 0;
 }
 
-.accordion-button:focus {
+.homepageAccordion .accordion-button:focus {
     box-shadow: none;
 }
 
-.accordion-button::after {
+.homepageAccordion .accordion-button::after {
     display: none !important;
 }
 
-.accordion-body {
+.homepageAccordion .accordion-body {
     padding: 15px 0;
     color: #333;
 }
 
-.accordion-item + .accordion-item {
+.homepageAccordion .accordion-item+.accordion-item {
     border-top: 1px solid #0a2a5e;
 }
 
@@ -57,7 +57,7 @@
     font-size: 0.9em;
 }
 
-.accordion-item:first-of-type>.accordion-header .accordion-button {
+.homepageAccordion .accordion-item:first-of-type>.accordion-header .accordion-button {
     border-radius: 0;
     border-top: 1px solid #0a2a5e;
 }

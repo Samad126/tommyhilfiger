@@ -5,20 +5,36 @@ import Carusel from "./Carusel"
 
 import "./productItems.css"
 import { MdOutlineKeyboardArrowDown } from "react-icons/md"
+import Category from "../Category/Category"
+import { useState } from "react"
+import Quickview from "../Quickview/Quickview"
 
 function ProductItems() {
+    const [catShow, setCatShow] = useState(false);
+    const [itemShow, setItemShow] = useState(false);
+
+    function handleCatshow() {
+        setCatShow((prev) => !prev);
+    }
+
+    function handleItemshow() {
+        setItemShow((prev) => !prev);
+    }
+
     return (
         <div id="mainProductSection" className="mt-4">
+            <Category show={catShow} handleClose={handleCatshow} />
+            <Quickview show={itemShow} handleClose={handleItemshow}/>
             <div id="mobileFilterSection" className="d-flex align-items-center justify-content-between px-3">
                 <p className="m-0">169 Items</p>
                 <button className="d-flex align-items-center gap-2 filterSortBtn"><PiSlidersHorizontal /> Filter & Sort</button>
             </div>
             <div id="desktopFilterSection" className="d-flex justify-content-between align-items-start px-3">
                 <div id="categsBtns" className="d-flex flex-wrap gap-3 align-items-center w-50">
-                    <button className="d-flex align-items-center justify-content-between">Category <MdOutlineKeyboardArrowDown /></button>
-                    <button className="d-flex align-items-center justify-content-between">Category <MdOutlineKeyboardArrowDown /></button>
-                    <button className="d-flex align-items-center justify-content-between">Category <MdOutlineKeyboardArrowDown /></button>
-                    <button className="d-flex align-items-center justify-content-between">Category <MdOutlineKeyboardArrowDown /></button>
+                    <button onClick={handleCatshow} className="d-flex align-items-center justify-content-between">Category <MdOutlineKeyboardArrowDown /></button>
+                    <button onClick={handleCatshow} className="d-flex align-items-center justify-content-between">Category <MdOutlineKeyboardArrowDown /></button>
+                    <button onClick={handleCatshow} className="d-flex align-items-center justify-content-between">Category <MdOutlineKeyboardArrowDown /></button>
+                    <button onClick={handleCatshow} className="d-flex align-items-center justify-content-between">Category <MdOutlineKeyboardArrowDown /></button>
                 </div>
                 <div className="d-flex align-items-center gap-2 desktopSort">
                     <p className="m-0">910 Items</p>
@@ -46,7 +62,7 @@ function ProductItems() {
             <div className="d-flex flex-wrap justify-content-between my-5" id="productItems">
                 <div>
                     <Link>
-                        <Carusel />
+                        <Carusel handleClick={handleItemshow}/>
                     </Link>
                     <div className="p-2">
                         <Link className="prodItemTitle">Long-Sleeve Tommy Wicking Polo</Link>

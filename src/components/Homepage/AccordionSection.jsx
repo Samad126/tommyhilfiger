@@ -34,25 +34,27 @@ function AccordionSection() {
     };
 
     return (
-        <Accordion activeKey={activeKeys}>
-            {data.map((section, index) => (
-                <Accordion.Item key={index} eventKey={index.toString()} className="custom-accordion-item">
-                    <Accordion.Header onClick={() => handleToggle(index)}>
-                        <div className="accordion-header-content">
-                            <span>{section.name}</span>
-                            <span>{activeKeys.includes(index.toString()) ? "-" : "+"}</span>
-                        </div>
-                    </Accordion.Header>
-                    <Accordion.Body>
-                        <ul className="sub-item-list">
-                            {section.items.map((subItem, subIndex) => (
-                                <li key={subIndex} className="sub-item">{subItem}</li>
-                            ))}
-                        </ul>
-                    </Accordion.Body>
-                </Accordion.Item>
-            ))}
-        </Accordion>
+        <div className="homepageAccordion">
+            <Accordion activeKey={activeKeys}>
+                {data.map((section, index) => (
+                    <Accordion.Item key={index} eventKey={index.toString()} className="custom-accordion-item">
+                        <Accordion.Header onClick={() => handleToggle(index)}>
+                            <div className="accordion-header-content">
+                                <span>{section.name}</span>
+                                <span>{activeKeys.includes(index.toString()) ? "-" : "+"}</span>
+                            </div>
+                        </Accordion.Header>
+                        <Accordion.Body>
+                            <ul className="sub-item-list">
+                                {section.items.map((subItem, subIndex) => (
+                                    <li key={subIndex} className="sub-item">{subItem}</li>
+                                ))}
+                            </ul>
+                        </Accordion.Body>
+                    </Accordion.Item>
+                ))}
+            </Accordion>
+        </div>
     );
 }
 

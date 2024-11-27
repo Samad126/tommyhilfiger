@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import demoImg from "../../assets/demonigga.jpeg";
 
-function Carusel() {
+function Carusel({handleClick}) {
     const [index, setIndex] = useState(0);
     const [isQuickViewHovered, setIsQuickViewHovered] = useState(false);
 
@@ -10,12 +10,15 @@ function Carusel() {
         setIndex(selectedIndex);
     };
 
+    console.log(handleClick);
+    
     return (
         <>
             <button
                 className="quickViewBtn"
                 onMouseEnter={() => setIsQuickViewHovered(true)}
                 onMouseLeave={() => setIsQuickViewHovered(false)}
+                onClick={handleClick}
             >
                 Quick View
             </button>
