@@ -1,6 +1,6 @@
 import { Offcanvas } from "react-bootstrap"
 import { Link } from "react-router-dom"
-import demoforcart from "../../assets/demoforcart.webp"
+
 import CategoryAccordion from "./CategoryAccordion"
 
 function Category({ show, handleClose }) {

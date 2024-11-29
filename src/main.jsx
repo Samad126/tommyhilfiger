@@ -11,6 +11,7 @@ import SingleProduct from './pages/singleProduct/SingleProduct.jsx'
 import store from './redux/store.js'
 import { Provider } from 'react-redux'
 import { loader as prodLoader } from './productLoader.js'
+import Search from './pages/search/Search.jsx'
 
 const router = createBrowserRouter([
   {
@@ -23,7 +24,7 @@ const router = createBrowserRouter([
       },
       {
         path: "products",
-        loader : prodLoader,
+        loader: prodLoader,
         children: [
           {
             path: "all",
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
           },
         ]
       },
+      {
+        path: "/search/:key",
+        element: <Search />
+      }
     ]
   },
   {

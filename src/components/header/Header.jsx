@@ -37,7 +37,7 @@ function Header() {
             <header>
                 <div>
                     <div id='topHeader' className='d-flex justify-content-between p-3'>
-                        <Link id='toHomeImg'><img src={mobileLogo} alt="mobile logo" id='mobileLogo' /></Link>
+                        <Link to={"/"} id='toHomeImg'><img src={mobileLogo} alt="mobile logo" id='mobileLogo' /></Link>
                         <Link className='align-items-center gap-2' id='locationBtn'>
                             <TfiLocationPin />
                             Stores

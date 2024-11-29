@@ -4,7 +4,6 @@ import { IoStar } from 'react-icons/io5'
 import { Link, useParams } from 'react-router-dom'
 import SingleProductAccordion from './SingleProductAccordion'
 import members from "../../assets/tommyLittle.webp"
-import demonigga from "../../assets/demonigga.jpeg"
 
 import "./singleproduct.css"
 import { useDispatch, useSelector } from 'react-redux'
@@ -17,12 +16,14 @@ function SingleProduct() {
     const { item, status } = useSelector((state) => state.singleItem);
     const dispatch = useDispatch();
 
+    console.log(location);
     useEffect(() => {
+        
         dispatch(setLoading(true));
         console.log(id);
         dispatch(fetchSingleItem(id));
         dispatch(setLoading(false));
-    }, []);
+    }, [location.pathname]);
 
     console.log(status);
     return (
@@ -89,7 +90,14 @@ function SingleProduct() {
                                         <h2 className='specificTitle'>Color <span id='colorName'>Rouge</span></h2>
                                         <button className='grayUnderline'>View all colors</button>
                                     </div>
-                                    <div id='colors' className='d-flex flex-wrap align-item-center gap-4'>
+                                    <select style={{padding: "10px 30px"}} name="" id="">
+                                        <option value="">White</option>
+                                        <option value="">Blue</option>
+                                        <option value="">Red</option>
+                                        <option value="">Magenta</option>
+                                        <option value="">Orange</option>
+                                    </select>
+                                    {/* <div id='colors' className='d-flex flex-wrap align-item-center gap-4'>
                                         <div className="productColor">
                                             <div></div>
                                         </div>
@@ -102,7 +110,7 @@ function SingleProduct() {
                                         <div className="productColor">
                                             <div></div>
                                         </div>
-                                    </div>
+                                    </div> */}
                                 </div>
                                 <div id='size'>
                                     <div className='d-flex align-items-center justify-content-between'>
