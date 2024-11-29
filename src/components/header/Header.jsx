@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import mobileLogo from "../../assets/mobileLogo.svg"
 import desktopLogo from "../../assets/desktopLogo.svg"
@@ -11,11 +11,21 @@ import { IoPersonOutline } from 'react-icons/io5'
 import "./header.css"
 import Cartcanvas from './cart/Cartcanvas'
 import Searchcanvas from './search/Searchcanvas'
+import { fetchCategories } from '../../redux/categorySlice'
+import { useDispatch, useSelector } from 'react-redux'
+import CatItem from './CatItem'
 
 function Header() {
     const [showBasket, setShowBasket] = useState(false);
     const [showSearch, setShowSearch] = useState(false);
+    const { items } = useSelector((state) => state.categories);
 
+    const dispatch = useDispatch();
+    console.log(items);
+
+    useEffect(() => {
+        dispatch(fetchCategories());
+    }, []);
 
     function handleOpenClose(type) {
         type == "basket" ? setShowBasket((prev) => !prev) : setShowSearch((prev) => !prev);
@@ -32,7 +42,7 @@ function Header() {
                             <TfiLocationPin />
                             Stores
                         </Link>
-                        <Link id='desltopMainLogo'><img src={desktopLogo} alt="desktop logo" /></Link>
+                        <Link to={"/"} id='desltopMainLogo'><img src={desktopLogo} alt="desktop logo" /></Link>
                         <div className='d-flex gap-3' id='searchCatBtns'>
                             <button onClick={() => handleOpenClose("search")}><FaMagnifyingGlass /></button>
                             <button id='profileBtn'><IoPersonOutline /></button>
@@ -44,57 +54,9 @@ function Header() {
                     <div id='desktopNav'>
                         <nav>
                             <ul className='d-flex justify-content-center align-items-center'>
-                                <li className='cat'>
-                                    <Link>Men</Link>
-                                    <div className='moreCat'>
-                                        <Link><img src="" alt="" /></Link>
-                                        <div>
-                                            <h4>Featured</h4>
-                                            <nav>
-                                                <ul>
-                                                    <li><Link>Item1</Link></li>
-                                                    <li><Link>Item1</Link></li>
-                                                    <li><Link>Item1</Link></li>
-                                                    <li><Link>Item1</Link></li>
-                                                </ul>
-                                            </nav>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li className='cat'>
-                                    <Link>Women</Link>
-                                    <div className='moreCat'>
-                                        <Link><img src="" alt="" /></Link>
-                                        <div>
-                                            <h4>Featured</h4>
-                                            <nav>
-                                                <ul>
-                                                    <li><Link>Item1</Link></li>
-                                                    <li><Link>Item12</Link></li>
-                                                    <li><Link>Item1</Link></li>
-                                                    <li><Link>Item1</Link></li>
-                                                </ul>
-                                            </nav>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li className='cat'>
-                                    <Link>Kids</Link>
-                                    <div className='moreCat'>
-                                        <Link><img src="" alt="" /></Link>
-                                        <div>
-                                            <h4>Featured</h4>
-                                            <nav>
-                                                <ul>
-                                                    <li><Link>Item13</Link></li>
-                                                    <li><Link>Item1</Link></li>
-                                                    <li><Link>Item1</Link></li>
-                                                    <li><Link>Item1</Link></li>
-                                                </ul>
-                                            </nav>
-                                        </div>
-                                    </div>
-                                </li>
+                                {items?.map((item, index) => (
+                                    <CatItem key={index} catData={item}/>
+                                ))}
                             </ul>
                         </nav>
                     </div>

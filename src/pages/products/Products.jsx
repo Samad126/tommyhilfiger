@@ -3,8 +3,11 @@ import { Link } from "react-router-dom"
 
 import "./products.css"
 import ProductItems from "../../components/Products/ProductItems"
+import { useSelector } from "react-redux";
 
 function Products() {
+    const { items } = useSelector((state) => state.products);
+    
     return (
         <main>
             <div className="mainContainer">

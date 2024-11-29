@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import demoImg from "../../assets/demonigga.jpeg";
 
-function Carusel({handleClick}) {
+function Carusel({ handleClick, images }) {
     const [index, setIndex] = useState(0);
     const [isQuickViewHovered, setIsQuickViewHovered] = useState(false);
 
@@ -10,8 +10,6 @@ function Carusel({handleClick}) {
         setIndex(selectedIndex);
     };
 
-    console.log(handleClick);
-    
     return (
         <>
             <button
@@ -30,15 +28,11 @@ function Carusel({handleClick}) {
                 indicators={!isQuickViewHovered}
                 fade
             >
-                <Carousel.Item>
-                    <img className='w-100' src={demoImg} alt="" />
-                </Carousel.Item>
-                <Carousel.Item>
-                    <img className='w-100' src={demoImg} alt="" />
-                </Carousel.Item>
-                <Carousel.Item>
-                    <img className='w-100' src={demoImg} alt="" />
-                </Carousel.Item>
+                {images.map((img, index) => (
+                    <Carousel.Item key={index}>
+                        <img className='w-100' src={img} alt="img" />
+                    </Carousel.Item>
+                ))}
             </Carousel>
         </>
     );

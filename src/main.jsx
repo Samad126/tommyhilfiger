@@ -8,6 +8,9 @@ import ErrorElement from './components/ErrorElement.jsx'
 import Homepage from './pages/homepage/Homepage.jsx'
 import Products from './pages/products/Products.jsx'
 import SingleProduct from './pages/singleProduct/SingleProduct.jsx'
+import store from './redux/store.js'
+import { Provider } from 'react-redux'
+import { loader as prodLoader } from './productLoader.js'
 
 const router = createBrowserRouter([
   {
@@ -20,11 +23,17 @@ const router = createBrowserRouter([
       },
       {
         path: "products",
-        element: <Products />
-      },
-      {
-        path: "items",
-        element: <SingleProduct />
+        loader : prodLoader,
+        children: [
+          {
+            path: "all",
+            element: <Products />
+          },
+          {
+            path: "details/:id",
+            element: <SingleProduct />
+          },
+        ]
       },
     ]
   },
@@ -43,9 +52,11 @@ const router = createBrowserRouter([
 })
 
 createRoot(document.getElementById('root')).render(
-  <RouterProvider router={router}
-    future={{
-      v7_startTransition: true,
-    }}
-  />
+  <Provider store={store}>
+    <RouterProvider router={router}
+      future={{
+        v7_startTransition: true,
+      }}
+    />
+  </Provider>
 )
