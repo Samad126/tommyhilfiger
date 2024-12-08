@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Breadcrumb, Spinner } from 'react-bootstrap'
 import { IoStar } from 'react-icons/io5'
 import { Link, useParams } from 'react-router-dom'
@@ -9,21 +9,49 @@ import "./singleproduct.css"
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchSingleItem } from '../../redux/singleItemSlice'
 import { setLoading } from '../../redux/mainLoaderSlice'
-import SpinComponent from '../../components/Spinner/SpinComponent'
+// import SpinComponent from '../../components/Spinner/SpinComponent'
 
 function SingleProduct() {
     const { id } = useParams();
+
     const { item, status } = useSelector((state) => state.singleItem);
+
+    console.log(item);
+
+    const [selectedSize, setSelectedSize] = useState(null);
+    const [selectedCount, setSelectedCount] = useState(1);
+    const [selectedColor, setSelectedColor] = useState(item?.Colors[0]);
+
     const dispatch = useDispatch();
 
-    console.log(location);
     useEffect(() => {
-        
         dispatch(setLoading(true));
         console.log(id);
         dispatch(fetchSingleItem(id));
         dispatch(setLoading(false));
-    }, [location.pathname]);
+    }, []);
+
+    useEffect(() => {
+        setSelectedColor(item?.Colors[0]);
+    }, [item]);
+
+    console.log(selectedColor, selectedSize, selectedCount);
+
+    function sizeSelect(size) {
+        setSelectedSize(size);
+    }
+
+    function addToCart(item) {
+        if (selectedSize != null){
+            const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+            const isAvailable = cartItems.findIndex((cart) => cart.id == item.id);
+            isAvailable == -1 ? cartItems.push({...item, count : selectedCount}) : cartItems[isAvailable].count = cartItems[isAvailable].count + 1;
+            localStorage.setItem("cartItems", JSON.stringify(cartItems));
+        }
+        else {
+            alert("Please select size");
+        }
+    }
 
     console.log(status);
     return (
@@ -74,7 +102,6 @@ function SingleProduct() {
                                         <IoStar />
                                         <IoStar />
                                     </div>
-                                    <Link className='grayUnderline'>Questions & Answers 10</Link>
                                 </div>
                                 <p className="d-flex gap-1 price">
                                     <span className="prevPrice highfont">${item.price}</span>
@@ -87,30 +114,13 @@ function SingleProduct() {
                                 </div>
                                 <div id='color'>
                                     <div className='d-flex align-items-center justify-content-between'>
-                                        <h2 className='specificTitle'>Color <span id='colorName'>Rouge</span></h2>
-                                        <button className='grayUnderline'>View all colors</button>
+                                        <h2 className='specificTitle'>Color <span id='colorName'>{selectedColor}</span></h2>
                                     </div>
-                                    <select style={{padding: "10px 30px"}} name="" id="">
-                                        <option value="">White</option>
-                                        <option value="">Blue</option>
-                                        <option value="">Red</option>
-                                        <option value="">Magenta</option>
-                                        <option value="">Orange</option>
+                                    <select value={selectedColor} onChange={(e) => setSelectedColor(e.target.value)} style={{ padding: "10px 30px" }} name="" id="">
+                                        {item.Colors.map((item, index) => (
+                                            <option key={index} value={item}>{item}</option>
+                                        ))}
                                     </select>
-                                    {/* <div id='colors' className='d-flex flex-wrap align-item-center gap-4'>
-                                        <div className="productColor">
-                                            <div></div>
-                                        </div>
-                                        <div className="productColor">
-                                            <div></div>
-                                        </div>
-                                        <div className="productColor">
-                                            <div></div>
-                                        </div>
-                                        <div className="productColor">
-                                            <div></div>
-                                        </div>
-                                    </div> */}
                                 </div>
                                 <div id='size'>
                                     <div className='d-flex align-items-center justify-content-between'>
@@ -119,7 +129,7 @@ function SingleProduct() {
                                     </div>
                                     <div id='sizes' className='d-flex flex-wrap align-item-center gap-2'>
                                         {item.Size.map((item, index) => (
-                                            <button key={index}>{item}</button>
+                                            <button className={`${selectedSize == item ? "selectedItem" : ""}`} onClick={() => sizeSelect(item == selectedSize ? null : item)} key={index}>{item}</button>
                                         ))}
                                     </div>
                                 </div>
@@ -130,7 +140,7 @@ function SingleProduct() {
                                 <div id='addToCartSection' className='d-flex justify-content-between gap-2'>
                                     <div className='selectSection d-flex flex-column w-25'>
                                         <label htmlFor="countSelector">Qty</label>
-                                        <select name="" id="countSelector" className='w-100 h-100'>
+                                        <select disabled={selectedSize == null} value={selectedCount} onChange={(e) => setSelectedCount(e.target.value)} name="" id="countSelector" className='w-100 h-100'>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
                                             <option value="3">3</option>
@@ -138,7 +148,7 @@ function SingleProduct() {
                                             <option value="5">5</option>
                                         </select>
                                     </div>
-                                    <button id='addToCartButton' className='w-75'>Select a Size</button>
+                                    <button onClick={() => addToCart(item)} id='addToCartButton' className='w-75'>{selectedSize != null ? "Add To Cart" : "Select a Size"}</button>
                                 </div>
                                 <div>
                                     <p className='m-0 shippingDetail'>Free Standard Shipping on Orders $100+</p>

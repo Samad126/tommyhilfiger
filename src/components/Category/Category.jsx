@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 
 import CategoryAccordion from "./CategoryAccordion"
 
-function Category({ show, handleClose }) {
+function Category({ show, handleClose, selectedIndex }) {
     return (
         <div>
             <Offcanvas show={show} onHide={handleClose} placement="end">
@@ -12,7 +12,7 @@ function Category({ show, handleClose }) {
                 </Offcanvas.Header>
                 <Offcanvas.Body>
                     <div id="categoryAccordion">
-                        <CategoryAccordion />
+                        <CategoryAccordion active={selectedIndex}/>
                     </div>
                     <div id='checkoutSection'>
                         <button>Clear All</button>

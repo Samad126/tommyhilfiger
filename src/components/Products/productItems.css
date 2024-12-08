@@ -70,7 +70,7 @@
     button {
         background-color: var(--light-color);
         color: white;
-        width: 65px;
+        min-width: calc(fit-content + 20);
         padding: 10px 8px;
         border-radius: 35px;
         font-size: 14px;

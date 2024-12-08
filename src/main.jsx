@@ -36,10 +36,10 @@ const router = createBrowserRouter([
           },
         ]
       },
-      {
-        path: "/search/:key",
-        element: <Search />
-      }
+      // {
+      //   path: "/search/:key",
+      //   element: <Search />
+      // }
     ]
   },
   {

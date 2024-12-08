@@ -86,6 +86,11 @@
     }
 }
 
+.selectedItem{
+    background-color: var(--light-color) !important;
+    color: white !important;
+}
+
 #desktopImageGallery {
     display: none;
     width: 62%;

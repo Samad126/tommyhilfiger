@@ -4,7 +4,7 @@ export const fetchProducts = createAsyncThunk(
   "products/fetchProducts",
   async (data, thunkAPI) => {
     try {
-      const response = await fetch(`https://ecommerse.apasni.me/products/${data}`);
+      const response = await fetch(`https://ecommerse.apasni.me${data}`);
       if (!response.ok) {
         throw new Error("Failed to fetch products");
       }

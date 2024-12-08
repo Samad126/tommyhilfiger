@@ -18,10 +18,10 @@ import CatItem from './CatItem'
 function Header() {
     const [showBasket, setShowBasket] = useState(false);
     const [showSearch, setShowSearch] = useState(false);
-    const { items } = useSelector((state) => state.categories);
+    const { cats } = useSelector((state) => state.categories);
 
     const dispatch = useDispatch();
-    console.log(items);
+    console.log(cats);
 
     useEffect(() => {
         dispatch(fetchCategories());
@@ -54,7 +54,7 @@ function Header() {
                     <div id='desktopNav'>
                         <nav>
                             <ul className='d-flex justify-content-center align-items-center'>
-                                {items?.map((item, index) => (
+                                {cats?.map((item, index) => (
                                     <CatItem key={index} catData={item}/>
                                 ))}
                             </ul>

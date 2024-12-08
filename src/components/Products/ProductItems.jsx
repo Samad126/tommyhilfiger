@@ -1,43 +1,100 @@
 import { IoCloseSharp, IoStar } from "react-icons/io5"
 import { PiSlidersHorizontal } from "react-icons/pi"
-import { Link, Router, useNavigate, useSearchParams } from "react-router-dom"
-import Carusel from "./Carusel"
+import { useNavigate, useSearchParams } from "react-router-dom"
 
 import "./productItems.css"
 import { MdOutlineKeyboardArrowDown } from "react-icons/md"
 import Category from "../Category/Category"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import Quickview from "../Quickview/Quickview"
 import { useDispatch, useSelector } from "react-redux"
 import { fetchProducts } from "../../redux/productsSlice"
 import SingleItem from "./SingleItemComponent"
+import { resetFilters, resetImportantFilter, setFilter, setFiltersFromQuery, setInitialFilter } from "../../redux/filterSlice"
+import FilterButton from "./FilterButton"
 
 function ProductItems() {
     const [catShow, setCatShow] = useState(false);
     const [itemShow, setItemShow] = useState(false);
     const [selectedCat, setSelectedCat] = useState(null);
-    const [searchParams, _] = useSearchParams();
+    const [searchParams, setSearchParams] = useSearchParams();
 
     const { items } = useSelector((state) => state.products);
+    const { filters, initialFilters, importantFilters } = useSelector((state) => state.filter);
 
-    const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    // console.log(items, location.pathname);
+    const firstFilterRef = useRef(true);
+
+    console.log(initialFilters);
+
     useEffect(() => {
-        console.log(searchParams, searchParams.size);
-        
-        if (searchParams.size == 0) {
-            navigate("../all?page=1&limit=50");
-            dispatch(fetchProducts("all?page=1&limit=100"));
+        if (!firstFilterRef.current) {
+            const params = searchParams.toString();
+            const paramsObj = Object.fromEntries(searchParams.entries());
+            dispatch(setFiltersFromQuery(paramsObj));
+            dispatch(fetchProducts(location.pathname + "?" + params));
+        }
+    }, [location.search, initialFilters]);
+
+    useEffect(() => {
+        if (firstFilterRef.current) {
+            firstFilterRef.current = false;
             return;
         }
 
-        const allParams = Object.entries(Object.fromEntries(searchParams.entries()));
-        const newArray = allParams.map((item) => `${item[0]}=${item[1]}`);
-        const queryString = "all?" + newArray.join("&");
-        dispatch(fetchProducts(queryString));
-    }, [location.search]);
+        const params = new URLSearchParams();
+
+        for (const [key, value] of Object.entries(filters)) {
+            if (Array.isArray(value) && value.length > 0) {
+                params.set(key, value.join(","));
+            } else if (!Array.isArray(value) && value !== "") {
+                params.set(key, value);
+            }
+        }
+
+        console.log(filters);
+        setSearchParams(params);
+    }, [filters]);
+
+    useEffect(() => {
+        const updatedParamsObj = getInitialFilters();
+
+        let importantParams = Object.entries(Object.fromEntries(searchParams.entries()))
+            .filter(
+                (filter) =>
+                    filter[0] !== "categoryId" &&
+                    filter[0] !== "subcategoryId" &&
+                    filter[0] !== "limit" &&
+                    filter[0] !== "sortBy" &&
+                    filter[0] !== "sortOrder"
+            )
+            .map(([key, value]) => {
+                if (key === "size" || key === "color") {
+                    return [key, typeof value === "string" ? value.split(",") : value];
+                }
+                return [key, value];
+            });
+
+        let updatedImportantParams = {};
+        importantParams.forEach(element => {
+            updatedImportantParams[element[0]] = element[1];
+        });
+
+        console.log(importantParams);
+        dispatch(setInitialFilter({ updatedParamsObj, updatedImportantParams }));
+    }, []);
+
+    function getInitialFilters() {
+        const paramsArr = Object.entries(Object.fromEntries(searchParams.entries())).filter((filter) => filter[0] == "categoryId" || filter[0] == "subcategoryId" || filter[0] == "limit");
+
+        let updatedParamsObj = {};
+        paramsArr.forEach(element => {
+            updatedParamsObj[element[0]] = element[1];
+        });
+
+        return updatedParamsObj;
+    }
 
     function handleCatshow() {
         setCatShow((prev) => !prev);
@@ -50,13 +107,22 @@ function ProductItems() {
         setItemShow((prev) => !prev);
     }
 
-    function handleCategSwitch(num){
-        setSelectedCat(num);
+    function handleSortChange(e) {
+        console.log(e.target.value);
+        dispatch(setFilter({ key: "sortBy", value: !filters.sortBy ? "price" : null }));
+        dispatch(setFilter({ key: "sortOrder", value: !filters.sortOrder ? e.target.value : null }));
     }
+
+    function handleCategSwitch(num) {
+        setSelectedCat(num);
+        setCatShow((prev) => !prev);
+    }
+
+    const filterCount = Object.entries(importantFilters)?.filter((item) => Array.isArray(item[1]) ? item[1].length > 0 : item[1]).length;
 
     return (
         <div id="mainProductSection" className="mt-4">
-            <Category show={catShow} handleClose={handleCatshow} />
+            <Category selectedIndex={selectedCat} show={catShow} handleClose={handleCatshow} />
             <Quickview show={itemShow} handleClose={handleItemshow} />
             <div id="mobileFilterSection" className="d-flex align-items-center justify-content-between px-3">
                 <p className="m-0">{items?.data?.length} Items</p>
@@ -74,20 +140,20 @@ function ProductItems() {
                     <div id="seperator"></div>
                     <label htmlFor="sortSelect">Sort By</label>
                     <div className="px-3 selectWrapper">
-                        <select name="" id="sortSelect">
-                            <option value="Newest">Price Low To High</option>
-                            <option value="Newest">Price High to Low</option>
+                        <select value={filters?.sortOrder} onChange={handleSortChange} name="" id="sortSelect">
+                            <option value="asc">Price Low To High</option>
+                            <option value="desc">Price High to Low</option>
                         </select>
                     </div>
                 </div>
             </div>
             <div id="filterSettings" className="d-flex align-items-center mt-3 gap-2 px-3 overflow-auto">
                 <div id="filters" className="d-flex align-items-center gap-2">
-                    <button className="d-flex align-items-center justify-content-between">XXS <IoCloseSharp /></button>
-                    <button className="d-flex align-items-center justify-content-between">XXS <IoCloseSharp /></button>
-                    <button className="d-flex align-items-center justify-content-between">XXS <IoCloseSharp /></button>
+                    {Object.entries(importantFilters)?.map((item, index) => (
+                        <FilterButton key={index} item={item} />
+                    ))}
                 </div>
-                <button id="clearAllBtn">Clear All</button>
+                {filterCount > 0 && <button onClick={() => dispatch(resetFilters(getInitialFilters()))} id="clearAllBtn">Clear All</button>}
             </div>
             <div className="my-5" id="productItems">
                 {items?.data?.map((item) => (

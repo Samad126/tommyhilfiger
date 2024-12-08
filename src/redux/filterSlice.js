@@ -2,7 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   filters: {},
-  query: "",
+  initialFilters: {},
+  importantFilters: {},
 };
 
 const filterSlice = createSlice({
@@ -12,27 +13,50 @@ const filterSlice = createSlice({
     setFilter(state, action) {
       const { key, value } = action.payload;
 
-      if (value) {
+      if (value !== undefined && value !== null) {
         state.filters[key] = value;
+        console.log(key);
+        if (key !== "sortBy" && key !== "sortOrder")
+          state.importantFilters[key] = value;
       } else {
         delete state.filters[key];
+        if (key !== "sortBy" && key !== "sortOrder")
+          delete state.importantFilters[key];
       }
-
-      state.query = new URLSearchParams(state.filters).toString();
     },
-    resetFilters(state) {
-      state.filters = {};
-      state.query = "";
+    setInitialFilter(state, action) {
+      state.initialFilters = action.payload.updatedParamsObj;
+      state.importantFilters = action.payload.updatedImportantParams;
+    },
+    resetImportantFilter(state) {
+      state.importantFilters = {};
+    },
+    resetFilters(state, action) {
+      state.filters = action.payload;
+      state.importantFilters = {};
     },
     setFiltersFromQuery(state, action) {
       const query = action.payload;
       const params = new URLSearchParams(query);
-      state.filters = Object.fromEntries(params.entries());
-      state.query = query;
+
+      state.filters = {};
+
+      for (const [key, value] of params.entries()) {
+        if (["size", "color"].includes(key)) {
+          state.filters[key] = value.includes(",") ? value.split(",") : [value];
+        } else {
+          state.filters[key] = value;
+        }
+      }
     },
   },
 });
 
-export const { setFilter, resetFilters, setFiltersFromQuery } =
-  filterSlice.actions;
+export const {
+  setFilter,
+  resetFilters,
+  setFiltersFromQuery,
+  setInitialFilter,
+  resetImportantFilter,
+} = filterSlice.actions;
 export default filterSlice.reducer;

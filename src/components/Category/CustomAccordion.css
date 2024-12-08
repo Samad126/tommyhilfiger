@@ -79,3 +79,8 @@
     border: none;
     padding: 0;
 }
+
+.MuiSlider-rail, .MuiSlider-track, .MuiSlider-thumb {
+    background-color: #000c2d !important;
+    color: #000c2d;
+}
