@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import tommyBig from "../../assets/tommyBig.webp"
 import tommyLittle from "../../assets/tommyLittle.webp"
-import desktopLogo from "../../assets/desktopLogo.svg"
+import desktopLogo from "../../assets/desktoplogo.svg"
 import footerHilfigerLogo from "../../assets/footerHilfigerLogo.svg"
 import { RiTwitterXLine } from "react-icons/ri";
 import { FaFacebookF, FaInstagram, FaPinterest, FaYoutube } from "react-icons/fa";
