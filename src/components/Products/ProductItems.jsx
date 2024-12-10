@@ -25,6 +25,7 @@ function ProductItems() {
 
     const firstFilterRef = useRef(true);
 
+    console.log(initialFilters, searchParams);
     useEffect(() => {
         if (!firstFilterRef.current) {
             const params = searchParams.toString();
@@ -32,7 +33,7 @@ function ProductItems() {
             dispatch(setFiltersFromQuery(paramsObj));
             dispatch(fetchProducts(location.pathname + "?" + params));
         }
-    }, [location.search, initialFilters, searchParams]);
+    }, [dispatch, initialFilters]);
 
     useEffect(() => {
         if (firstFilterRef.current) {
@@ -49,9 +50,15 @@ function ProductItems() {
                 params.set(key, value);
             }
         }
-
+        
         setSearchParams(params);
     }, [filters, setSearchParams]);
+
+    document.querySelectorAll('.carousel-indicators button, .carousel-control-prev button, .carousel-control-next button').forEach(function(link) {
+        link.addEventListener('click', function(event) {
+            event.preventDefault();
+        });
+    });
 
     useEffect(() => {
         const updatedParamsObj = getInitialFilters();
