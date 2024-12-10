@@ -4,6 +4,7 @@ import categoryReducer from "./categorySlice.js";
 import mainLoaderReducer from "./mainLoaderSlice.js";
 import singItemReducer from "./singleItemSlice.js";
 import filterReducer from "./filterSlice.js";
+import prodItemsReducer from "./productItems.js"
 
 const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ const store = configureStore({
     mainLoader: mainLoaderReducer,
     singleItem: singItemReducer,
     filter: filterReducer,
+    prodItems : prodItemsReducer
   },
 });
 

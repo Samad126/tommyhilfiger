@@ -1,0 +1,9 @@
+.mySwiper img {
+    height: 100%;
+    object-fit: contain;
+    width: 100%;
+}
+
+.swiper-button-prev, .swiper-button-next{
+    scale: .7;
+}

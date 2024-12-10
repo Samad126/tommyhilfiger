@@ -3,10 +3,20 @@ import Carusel from "./Carusel"
 import { IoStar } from "react-icons/io5"
 
 function SingleItem({ item, handleItemshow }) {
+
+  const originalConsoleError = console.error;
+
+  console.error = (...args) => {
+    if (typeof args[0] === 'string' && args[0].includes('validateDOMNesting')) {
+      return; 
+    }
+    originalConsoleError(...args);
+  };
+
   return (
     <div>
       <Link to={`../details/${item.id}`}>
-        <Carusel images={item.images} handleClick={(e) => handleItemshow(e)} />
+        <Carusel itemId={item.id} images={item.images} handleClick={handleItemshow} />
       </Link>
       <div className="p-2">
         <Link to={`../details/${item.id}`} className="prodItemTitle">{item.name}</Link>

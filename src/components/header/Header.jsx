@@ -14,10 +14,13 @@ import Searchcanvas from './search/Searchcanvas'
 import { fetchCategories } from '../../redux/categorySlice'
 import { useDispatch, useSelector } from 'react-redux'
 import CatItem from './CatItem'
+import MultiLevelOffcanvas from './multileveloffcanvas/MultiLevelOffcanvas'
 
 function Header() {
     const [showBasket, setShowBasket] = useState(false);
+    const [showMain, setShowMain] = useState(false);
     const [showSearch, setShowSearch] = useState(false);
+
     const { cats } = useSelector((state) => state.categories);
 
     const dispatch = useDispatch();
@@ -28,9 +31,21 @@ function Header() {
     }, []);
 
     function handleOpenClose(type) {
-        type == "basket" ? setShowBasket((prev) => !prev) : setShowSearch((prev) => !prev);
+        switch (type) {
+            case "basket":
+                setShowBasket((prev) => !prev);
+                break;
+            case "search":
+                setShowSearch((prev) => !prev);
+                break;
+            case "main":
+                setShowMain((prev) => !prev);
+                break;
+            default:
+                console.warn("Unknown type passed to handleOpenClose:", type);
+        }
     }
-
+    
     return (
         <>
             <p id='topText'>50% off sitewide </p>
@@ -48,18 +63,19 @@ function Header() {
                             <button id='profileBtn'><IoPersonOutline /></button>
                             <Link><HiOutlineShoppingBag /></Link>
                             <button onClick={() => handleOpenClose("basket")}><HiOutlineShoppingBag /></button>
-                            <button id='hamburgerBtn'><GiHamburgerMenu /></button>
+                            <button onClick={() => handleOpenClose("main")} id='hamburgerBtn'><GiHamburgerMenu /></button>
                         </div>
                     </div>
                     <div id='desktopNav'>
                         <nav>
                             <ul className='d-flex justify-content-center align-items-center'>
                                 {cats?.map((item, index) => (
-                                    <CatItem key={index} catData={item}/>
+                                    <CatItem key={index} catData={item} />
                                 ))}
                             </ul>
                         </nav>
                     </div>
+                    <MultiLevelOffcanvas show={showMain} handleClose={handleOpenClose} />
                     <Cartcanvas show={showBasket} handleClose={handleOpenClose} />
                     <Searchcanvas show={showSearch} handleClose={handleOpenClose} />
                     <div id='mobileHeaderNav' style={{ display: "none" }}>

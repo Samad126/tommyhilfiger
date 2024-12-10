@@ -5,28 +5,25 @@ import { useNavigate, useSearchParams } from "react-router-dom"
 import "./productItems.css"
 import { MdOutlineKeyboardArrowDown } from "react-icons/md"
 import Category from "../Category/Category"
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef } from "react"
 import Quickview from "../Quickview/Quickview"
 import { useDispatch, useSelector } from "react-redux"
 import { fetchProducts } from "../../redux/productsSlice"
 import SingleItem from "./SingleItemComponent"
-import { resetFilters, resetImportantFilter, setFilter, setFiltersFromQuery, setInitialFilter } from "../../redux/filterSlice"
+import { resetFilters, setFilter, setFiltersFromQuery, setInitialFilter } from "../../redux/filterSlice"
 import FilterButton from "./FilterButton"
+import { setUIState } from "../../redux/productItems"
 
 function ProductItems() {
-    const [catShow, setCatShow] = useState(false);
-    const [itemShow, setItemShow] = useState(false);
-    const [selectedCat, setSelectedCat] = useState(null);
+    const dispatch = useDispatch();
     const [searchParams, setSearchParams] = useSearchParams();
 
     const { items } = useSelector((state) => state.products);
     const { filters, initialFilters, importantFilters } = useSelector((state) => state.filter);
 
-    const dispatch = useDispatch();
+    const { catShow, itemShow, selectedCat } = useSelector((state) => state.prodItems.prodState);
 
     const firstFilterRef = useRef(true);
-
-    console.log(initialFilters);
 
     useEffect(() => {
         if (!firstFilterRef.current) {
@@ -35,7 +32,7 @@ function ProductItems() {
             dispatch(setFiltersFromQuery(paramsObj));
             dispatch(fetchProducts(location.pathname + "?" + params));
         }
-    }, [location.search, initialFilters]);
+    }, [location.search, initialFilters, searchParams]);
 
     useEffect(() => {
         if (firstFilterRef.current) {
@@ -53,9 +50,8 @@ function ProductItems() {
             }
         }
 
-        console.log(filters);
         setSearchParams(params);
-    }, [filters]);
+    }, [filters, setSearchParams]);
 
     useEffect(() => {
         const updatedParamsObj = getInitialFilters();
@@ -81,12 +77,11 @@ function ProductItems() {
             updatedImportantParams[element[0]] = element[1];
         });
 
-        console.log(importantParams);
         dispatch(setInitialFilter({ updatedParamsObj, updatedImportantParams }));
-    }, []);
+    }, [dispatch, searchParams]);
 
     function getInitialFilters() {
-        const paramsArr = Object.entries(Object.fromEntries(searchParams.entries())).filter((filter) => filter[0] == "categoryId" || filter[0] == "subcategoryId" || filter[0] == "limit");
+        const paramsArr = Object.entries(Object.fromEntries(searchParams.entries())).filter((filter) => filter[0] === "categoryId" || filter[0] === "subcategoryId" || filter[0] === "limit");
 
         let updatedParamsObj = {};
         paramsArr.forEach(element => {
@@ -97,28 +92,29 @@ function ProductItems() {
     }
 
     function handleCatshow() {
-        setCatShow((prev) => !prev);
+        dispatch(setUIState({ key: 'catShow', value: !catShow }));
     }
 
-    function handleItemshow(e) {
+    function handleItemshow(e, id) {
         if (e && e.preventDefault) {
             e.preventDefault();
         }
-        setItemShow((prev) => !prev);
+        dispatch(setUIState({ key: 'itemShow', value: !itemShow }));
+        dispatch(setUIState({ key: 'selectedId', value: id }));
     }
 
     function handleSortChange(e) {
-        console.log(e.target.value);
         dispatch(setFilter({ key: "sortBy", value: !filters.sortBy ? "price" : null }));
         dispatch(setFilter({ key: "sortOrder", value: !filters.sortOrder ? e.target.value : null }));
     }
 
     function handleCategSwitch(num) {
-        setSelectedCat(num);
-        setCatShow((prev) => !prev);
+        dispatch(setUIState({ key: 'selectedCat', value: num }));
+        dispatch(setUIState({ key: 'catShow', value: !catShow }));
     }
 
-    const filterCount = Object.entries(importantFilters)?.filter((item) => Array.isArray(item[1]) ? item[1].length > 0 : item[1]).length;
+    const filterCount = Object.entries(importantFilters)
+        ?.filter((item) => Array.isArray(item[1]) ? item[1].length > 0 : item[1]).length;
 
     return (
         <div id="mainProductSection" className="mt-4">
@@ -164,4 +160,4 @@ function ProductItems() {
     )
 }
 
-export default ProductItems
+export default ProductItems;

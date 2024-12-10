@@ -1,0 +1,130 @@
+:root {
+    --dark-color: #000c2d;
+    --light-color: #00174f;
+}
+
+.guestTitle {
+    font-size: 1.5em;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+.orSignIn a {
+    font-size: 0.9em;
+}
+
+.sectionTitle {
+    font-size: 1.2em;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.smallText {
+    font-size: 0.9em;
+    color: #484848;
+}
+
+.my-input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #00174f;
+    border-radius: 3px;
+    font-size: 0.9em;
+    color: var(--light-color);
+    outline: none;
+}
+
+.my-input:focus {
+    border-color: #0e845a;
+}
+
+.my-input-error {
+    border-color: red !important;
+}
+
+.input-error-msg {
+    font-size: 0.8em;
+    color: red;
+    margin-top: 5px;
+}
+
+.apoCheck label {
+    font-size: 0.9em;
+    color: var(--light-color);
+}
+
+.btn-success {
+    background-color: #0e845a;
+    border: none;
+    font-size: 1em;
+    padding: 10px 0;
+}
+
+.orderSummaryWrapper {
+    background-color: #fff;
+}
+
+.orderSummaryTitle {
+    color: var(--dark-color);
+    font-weight: 600;
+}
+
+.summaryText {
+    color: var(--light-color);
+    font-size: 0.9em;
+}
+
+.promoApplyBtn {
+    border-color: var(--light-color);
+    color: var(--light-color);
+    font-size: 0.9em;
+}
+
+.promoApplyBtn:hover {
+    background-color: var(--light-color);
+    color: white;
+}
+
+.bagTitle {
+    color: var(--dark-color);
+    font-weight: 700;
+}
+
+.cartItemThumb {
+    max-width: 50px;
+    height: auto;
+}
+
+.smallCartItem p {
+    color: var(--light-color);
+    font-size: 0.9em;
+    margin: 0;
+}
+
+.disabledBtn {
+    background-color: #e9ecef !important;
+    color: #6c757d !important;
+    border: none;
+}
+
+@media (max-width: 768px) {
+    .guestTitle {
+        font-size: 1.2em;
+    }
+
+    .sectionTitle {
+        font-size: 1.1em;
+    }
+
+    .promoApplyBtn, .my-input {
+        font-size: 0.85em;
+    }
+
+    .cartItemThumb {
+        max-width: 40px;
+    }
+
+    .btn-success {
+        font-size: 0.9em;
+    }
+}

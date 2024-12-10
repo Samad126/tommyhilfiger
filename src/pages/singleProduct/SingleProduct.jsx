@@ -42,16 +42,32 @@ function SingleProduct() {
     }
 
     function addToCart(item) {
-        if (selectedSize != null){
-            const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-            const isAvailable = cartItems.findIndex((cart) => cart.id == item.id);
-            isAvailable == -1 ? cartItems.push({...item, count : selectedCount}) : cartItems[isAvailable].count = cartItems[isAvailable].count + 1;
-            localStorage.setItem("cartItems", JSON.stringify(cartItems));
-        }
-        else {
+        if (selectedSize == null) {
             alert("Please select size");
+            return;
+        }
+
+        const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+        const isAvailable = cartItems.findIndex((cart) => cart.id === item.id);
+
+        if (isAvailable === -1) {
+            if (selectedCount > 5) {
+                alert("Max stock is 5");
+            } else {
+                cartItems.push({ ...item, count: selectedCount });
+                localStorage.setItem("cartItems", JSON.stringify(cartItems));
+            }
+        } else {
+            const newCount = cartItems[isAvailable].count + selectedCount;
+            if (newCount > 5) {
+                alert("Max stock is 5");
+            } else {
+                cartItems[isAvailable].count = newCount;
+                localStorage.setItem("cartItems", JSON.stringify(cartItems));
+            }
         }
     }
+
 
     console.log(status);
     return (
@@ -66,7 +82,7 @@ function SingleProduct() {
                 </div> :
                 status == "succeeded" ?
                     <main className='mainContainer'>
-                        <div className='px-3'>
+                        {/* <div className='px-3'>
                             <Breadcrumb>
                                 <Breadcrumb.Item href="#">Home</Breadcrumb.Item>
                                 <Breadcrumb.Item href="https://getbootstrap.com/docs/4.0/components/breadcrumb/">
@@ -74,7 +90,7 @@ function SingleProduct() {
                                 </Breadcrumb.Item>
                                 <Breadcrumb.Item active>Data</Breadcrumb.Item>
                             </Breadcrumb>
-                        </div>
+                        </div> */}
                         <div className='d-flex align-items-start justify-content-between'>
                             <div id='desktopImageGallery'>
                                 <div className='d-flex flex-wrap justify-content-between'>
@@ -90,7 +106,7 @@ function SingleProduct() {
                             </div>
                             <div className='px-3' id='infoPart'>
                                 <div className='px-3' id='sliderAndImages'>
-
+                                    
                                 </div>
                                 <h4 id='companyName'>{item.Brands.name}</h4>
                                 <h2 className='itemTitle'>{item.name}</h2>
@@ -140,7 +156,7 @@ function SingleProduct() {
                                 <div id='addToCartSection' className='d-flex justify-content-between gap-2'>
                                     <div className='selectSection d-flex flex-column w-25'>
                                         <label htmlFor="countSelector">Qty</label>
-                                        <select disabled={selectedSize == null} value={selectedCount} onChange={(e) => setSelectedCount(e.target.value)} name="" id="countSelector" className='w-100 h-100'>
+                                        <select disabled={selectedSize == null} value={selectedCount} onChange={(e) => setSelectedCount(Number(e.target.value))} name="" id="countSelector" className='w-100 h-100'>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
                                             <option value="3">3</option>

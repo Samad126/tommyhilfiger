@@ -2,60 +2,59 @@
     font-size: 16px;
     font-weight: bold;
     color: #1a1a1a;
-    /* Adjust color to match */
     margin: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-/* Remove Glowing Effect */
+
 .accordion-button:focus {
     box-shadow: none;
-    /* Remove glowing effect */
+
     outline: none;
-    /* Remove outline */
+
 }
 
 #categAccordion .accordion-button {
     border: none;
-    /* Ensure no border styling on header button */
+
     font-weight: bold;
     color: #1a1a1a;
-    /* Text color for header */
+
 }
 
 #categAccordion .accordion-button:not(.collapsed) {
     background-color: #f0f0f0;
-    /* Highlight background when expanded */
+
     color: #000;
-    /* Darker color when expanded */
+
 }
 
 #categAccordion .accordion-item {
     border-top: 1px solid #e5e5e5;
     border-radius: 0;
-    /* Subtle border between sections */
+
 }
 
 #categAccordion .accordion-body {
     padding: 15px;
-    /* Adjust padding for accordion body */
+
     background-color: #fff;
-    /* Light background color for content */
+
 }
 
 #categAccordion .accordion-item {
     border: none;
-    /* Remove default borders */
+
     border-top: 1px solid #e5e5e5;
-    /* Add subtle bottom border */
+
 }
 
 .custom-accordion-body {
     padding: 10px 15px;
     background-color: #f9f9f9;
-    /* Light background */
+
     color: #333;
 }
 
@@ -72,7 +71,7 @@
 
 #categAccordion .accordion-button:not(.collapsed) {
     background-color: #fff;
-    /* Highlighted background when expanded */
+
 }
 
 #categAccordion .accordion-body {
@@ -80,7 +79,9 @@
     padding: 0;
 }
 
-.MuiSlider-rail, .MuiSlider-track, .MuiSlider-thumb {
+.MuiSlider-rail,
+.MuiSlider-track,
+.MuiSlider-thumb {
     background-color: #000c2d !important;
     color: #000c2d;
 }

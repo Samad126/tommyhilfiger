@@ -1,13 +1,18 @@
 import { useState } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import demoImg from "../../assets/demonigga.jpeg";
+import { useDispatch } from 'react-redux';
+import { setUIState } from '../../redux/productItems';
 
-function Carusel({ handleClick, images }) {
+function Carusel({ handleClick, images, itemId }) {
     const [index, setIndex] = useState(0);
     const [isQuickViewHovered, setIsQuickViewHovered] = useState(false);
 
+    const dispatch = useDispatch();
+
     const handleSelect = (selectedIndex) => {
         setIndex(selectedIndex);
+        dispatch(setUIState({key : "selectedId", value : itemId}));
     };
 
     return (
@@ -16,7 +21,7 @@ function Carusel({ handleClick, images }) {
                 className="quickViewBtn"
                 onMouseEnter={() => setIsQuickViewHovered(true)}
                 onMouseLeave={() => setIsQuickViewHovered(false)}
-                onClick={handleClick}
+                onClick={(e) => handleClick(e, itemId)}
             >
                 Quick View
             </button>
