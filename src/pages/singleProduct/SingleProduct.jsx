@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Breadcrumb, Spinner } from 'react-bootstrap'
 import { IoStar } from 'react-icons/io5'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams, useSearchParams } from 'react-router-dom'
 import SingleProductAccordion from './SingleProductAccordion'
 import members from "../../assets/tommyLittle.webp"
 
@@ -29,7 +29,7 @@ function SingleProduct() {
         console.log(id);
         dispatch(fetchSingleItem(id));
         dispatch(setLoading(false));
-    }, []);
+    }, [id]);
 
     useEffect(() => {
         setSelectedColor(item?.Colors[0]);

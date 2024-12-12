@@ -1,3 +1,19 @@
-.MultiLevelOffcanvas > .offcanvas{
+.MultiLevelOffcanvas>.offcanvas {
     padding: 10px !important;
+}
+
+.hamburgerMenuLink {
+    text-decoration: none;
+    color: #111;
+}
+
+.menuSeperator {
+    background-color: #111;
+    width: 20px;
+    height: 1px;
+    margin: 10px 0;
+}
+
+.menuHeader{
+    width: 60%;
 }

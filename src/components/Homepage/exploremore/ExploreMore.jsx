@@ -6,10 +6,10 @@ function ExploreMore() {
         <section id="exploreMore">
             <h2>Explore more</h2>
             <div className="d-flex justify-content-between flex-wrap exploreLinks">
-                <Link className="bordered blueBorder">Men's Tops</Link>
-                <Link className="bordered blueBorder">Men's Sweatshirts</Link>
-                <Link className="bordered blueBorder">Women's Tops</Link>
-                <Link className="bordered blueBorder">Women's Sweatshirts</Link>
+                <Link to={"products/all?subcategoryId=19"} className="bordered blueBorder">Men's Jackets</Link>
+                <Link to={"products/all?subcategoryId=25"} className="bordered blueBorder">Men's Tees & Tanks</Link>
+                <Link to={"products/all?subcategoryId=17"} className="bordered blueBorder">Women's Bodysuit</Link>
+                <Link to={"products/all?subcategoryId=1"} className="bordered blueBorder">Women's Shirt</Link>
             </div>
         </section>
     )

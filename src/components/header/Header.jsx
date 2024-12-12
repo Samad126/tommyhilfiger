@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import mobileLogo from "../../assets/mobilelogo.svg"
 import desktopLogo from "../../assets/desktoplogo.svg"
+
 import { FaMagnifyingGlass } from 'react-icons/fa6'
 import { HiOutlineShoppingBag } from 'react-icons/hi'
 import { GiHamburgerMenu } from 'react-icons/gi'
@@ -24,7 +25,6 @@ function Header() {
     const { cats } = useSelector((state) => state.categories);
 
     const dispatch = useDispatch();
-    console.log(cats);
 
     useEffect(() => {
         dispatch(fetchCategories());
@@ -61,8 +61,8 @@ function Header() {
                         <div className='d-flex gap-3' id='searchCatBtns'>
                             <button onClick={() => handleOpenClose("search")}><FaMagnifyingGlass /></button>
                             <button id='profileBtn'><IoPersonOutline /></button>
-                            <Link><HiOutlineShoppingBag /></Link>
-                            <button onClick={() => handleOpenClose("basket")}><HiOutlineShoppingBag /></button>
+                            <Link to={"cart"} id='toCartMobile'><HiOutlineShoppingBag /></Link>
+                            <button id='toCartDesk' onClick={() => handleOpenClose("basket")}><HiOutlineShoppingBag /></button>
                             <button onClick={() => handleOpenClose("main")} id='hamburgerBtn'><GiHamburgerMenu /></button>
                         </div>
                     </div>
@@ -78,19 +78,6 @@ function Header() {
                     <MultiLevelOffcanvas show={showMain} handleClose={handleOpenClose} />
                     <Cartcanvas show={showBasket} handleClose={handleOpenClose} />
                     <Searchcanvas show={showSearch} handleClose={handleOpenClose} />
-                    <div id='mobileHeaderNav' style={{ display: "none" }}>
-                        <div id='controlHeader'>
-                            <button>{"<-"}</button>
-                            <p>Men</p>
-                            <button>X</button>
-                        </div>
-                        <div id='controlBody'>
-                            <button>Men</button>
-                            <Link>Men</Link>
-                            <button>Men</button>
-                            <Link>Men</Link>
-                        </div>
-                    </div>
                 </div>
             </header>
         </>

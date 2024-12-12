@@ -13,10 +13,10 @@ function BlackFriday() {
                 <h4 className="whiteTxt">Black Friday Early Access</h4>
                 <h2 className="whiteTxt">50% Off Sitewide</h2>
                 <div className="d-flex gap-4 flex-wrap justify-content-center">
-                    <Link className="whiteTxt bordered">Shop Men</Link>
-                    <Link className="whiteTxt bordered">Shop Women</Link>
-                    <Link className="whiteTxt bordered">Shop Kids</Link>
-                    <Link className="whiteTxt bordered">Shop Handbags</Link>
+                    <Link to={`products/all?categoryId=2`} className="whiteTxt bordered">Shop Men</Link>
+                    <Link to={`products/all?categoryId=1`} className="whiteTxt bordered">Shop Women</Link>
+                    <Link to={`products/all?categoryId=3`} className="whiteTxt bordered">Shop Kids</Link>
+                    <Link to={`products/all?categoryId=4`} className="whiteTxt bordered">Shop Handbags</Link>
                 </div>
             </div>
         </section>

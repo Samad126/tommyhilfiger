@@ -1,7 +1,8 @@
 import React from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom'
 import { resetImportantFilter } from '../../redux/filterSlice';
+import nese from "../../assets/menknits.webp"
 
 function CatItem({ catData }) {
     const { name, slug, Subcategory, id } = catData;
@@ -11,14 +12,14 @@ function CatItem({ catData }) {
     return (
         <li className='cat'>
             <Link onClick={() => (dispatch(resetImportantFilter()))} to={`/products/all?categoryId=${id}&limit=100`}>{name}</Link>
-            <div className='moreCat'>
-                {/* <Link><img src="" alt="" /></Link> */}
-                <div>
-                    <h4>Featured</h4>
+            <div className='d-flex justify-content-center align-items-start moreCat'>
+                <Link><img src={nese} alt="" /></Link>
+                <div className='moreCatLinks'>
+                    <h4 className='mb-4'>Featured</h4>
                     <nav>
                         <ul>
                             {Subcategory.map((item, index) => (
-                                <li key={index}><Link onClick={() => (dispatch(resetImportantFilter()))} to={`/products/all?subcategoryId=${item.id}&limit=100`}>{item.name}</Link></li>
+                                <li className='mb-1' key={index}><Link onClick={() => (dispatch(resetImportantFilter()))} to={`/products/all?subcategoryId=${item.id}&limit=100`}>{item.name}</Link></li>
                             ))}
                         </ul>
                     </nav>

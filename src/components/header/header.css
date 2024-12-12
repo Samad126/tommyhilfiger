@@ -40,7 +40,7 @@ header>div {
     color: var(--dark-color);
 }
 
-#desltopMainLogo{
+#desltopMainLogo {
     padding-left: 110px;
 }
 
@@ -51,15 +51,43 @@ header>div {
 .moreCat {
     max-height: 0;
     overflow: hidden;
-    transition: max-height ease-in-out;
+    /* transition: max-height ease-in-out;
     transition-duration: .3s;
-    transition-delay: 0s;
+    transition-delay: 0s; */
     width: 100%;
     position: absolute;
     top: 100%;
     background-color: white;
     z-index: 2;
     left: 0;
+    gap: 140px;
+
+    img {
+        height: 40vh;
+    }
+}
+
+.moreCatLinks {
+    h4, a {
+        color: var(--light-color);
+        font-size: 1rem;
+    }
+
+    h4 {
+        font-weight: bold;
+    }
+
+    ul {
+        padding: 0;
+    }
+
+    li {
+        list-style: none;
+    }
+
+    a{
+        font-weight: 400;
+    }
 }
 
 .cat {
@@ -73,17 +101,24 @@ header>div {
 
 .cat:hover {
     .moreCat {
-        max-height: 250px;
+        max-height: 450px;
+        height: 450px;
+        padding-top: 40px;
     }
 }
 
+#toCartDesk{
+    display: none;
+}
+
 @media screen and (min-width: 992px) {
-    #toHomeImg {
+    #toHomeImg, #toCartMobile {
         display: none;
     }
 
     #desltopMainLogo,
-    #desktopNav {
+    #desktopNav,
+    #toCartDesk {
         display: initial;
     }
 

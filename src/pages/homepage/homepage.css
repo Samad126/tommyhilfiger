@@ -1,10 +1,15 @@
-.imageLinks{
+.imageLinks {
     gap: 10px 0;
 }
 
 .flinks {
     width: 47%;
     position: relative;
+    /* padding-bottom: 50px;
+
+    -webkit-box-shadow: inset 0px -102px 99px -1px rgba(0,0,0,0.75);
+-moz-box-shadow: inset 0px -102px 99px -1px rgba(0,0,0,0.75);
+box-shadow: inset 0px -102px 99px -1px rgba(0,0,0,0.75); */
 
     img {
         width: 100%;
@@ -18,8 +23,9 @@
         transform: translateX(-50%);
         min-width: 120px;
         text-align: center;
+        min-width: 150px;
 
-        &:hover{
+        &:hover {
             text-decoration: underline;
         }
     }
@@ -27,11 +33,11 @@
 }
 
 @media screen and (min-width:768px) {
-    .flinks{
+    .flinks {
         width: 24%;
     }
 
-    .imageLinks{
+    .imageLinks {
         gap: 0;
     }
 }
