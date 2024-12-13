@@ -1,0 +1,21 @@
+.subcategLinks a {
+    color: #484848;
+    min-width: fit-content;
+}
+
+.crumpActive{
+    color: #00174f;
+}
+
+.breadcrumb-item a {
+    color: #484848;
+}
+
+.breadcrumb-item a:hover{
+    color: var(--light-color);
+    text-decoration: underline;
+}
+
+.breadcrumb-item.active {
+    color: var(--light-color);
+}

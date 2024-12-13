@@ -2,7 +2,7 @@ import React from 'react'
 
 function SizeFilter({idx, size, sizeFilter, handleFilterChange}) {
     return (
-        <div className="mb-2">
+        <div className="mb-2 sizeFilter d-flex align-items-center gap-2">
             <input
                 type="checkbox"
                 id={`size-${idx}`}

@@ -3,19 +3,21 @@ import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useMemo } from "react";
 
+import "./breadcrump.css"
+
 function BreadCrumbComponent() {
     const { cats } = useSelector((state) => state.categories);
     const [searchParams] = useSearchParams();
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     const { selectedCat, selectedSubCat, activeTitle } = useMemo(() => {
         const tempCatId = Number(searchParams.get("categoryId"));
         const tempSubcatId = Number(searchParams.get("subcategoryId"));
 
-        const selectedCat = cats?.find((cat) => cat.id === tempCatId) || 
-                            cats?.find((cat) =>
-                                cat.Subcategory?.some((sub) => sub.id === tempSubcatId)
-                            );
+        const selectedCat = cats?.find((cat) => cat.id === tempCatId) ||
+            cats?.find((cat) =>
+                cat.Subcategory?.some((sub) => sub.id === tempSubcatId)
+            );
 
         const selectedSubCat = selectedCat?.Subcategory?.find((sub) => sub.id === tempSubcatId);
         const activeTitle = selectedSubCat?.name || selectedCat?.name || '';
@@ -27,18 +29,20 @@ function BreadCrumbComponent() {
         <div className="p-3">
             <Breadcrumb>
                 <Breadcrumb.Item>
-                    <button onClick={() => navigate("/")}>Home</button>
+                    <Link
+                        to={"/"}
+                    >
+                        Home
+                    </Link>
                 </Breadcrumb.Item>
 
                 {selectedCat && (
                     <Breadcrumb.Item>
-                        <button
-                            onClick={() =>
-                                navigate(`/products/all?categoryId=${selectedCat.id}&limit=100`)
-                            }
+                        <Link
+                            to={`/products/all?categoryId=${selectedCat.id}&limit=100`}
                         >
                             {selectedCat.name}
-                        </button>
+                        </Link>
                     </Breadcrumb.Item>
                 )}
 
@@ -48,7 +52,7 @@ function BreadCrumbComponent() {
             <h2 id="categTitle">{activeTitle}</h2>
 
             {selectedCat?.Subcategory && !selectedSubCat && (
-                <div className="subcategLinks d-flex gap-3">
+                <div className="subcategLinks d-flex gap-4 overflow-auto">
                     {selectedCat.Subcategory.map((sc) => (
                         <Link
                             key={sc.id}

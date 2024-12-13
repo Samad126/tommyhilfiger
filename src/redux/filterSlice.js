@@ -6,6 +6,24 @@ const initialState = {
   importantFilters: {},
 };
 
+export function getInitialFilters() {
+  const paramsArr = Object.entries(
+    Object.fromEntries(new URLSearchParams(location.search).entries())
+  ).filter(
+    (filter) =>
+      filter[0] === "categoryId" ||
+      filter[0] === "subcategoryId" ||
+      filter[0] === "limit"
+  );
+
+  let updatedParamsObj = {};
+  paramsArr.forEach((element) => {
+    updatedParamsObj[element[0]] = element[1];
+  });
+
+  return updatedParamsObj;
+}
+
 const filterSlice = createSlice({
   name: "filter",
   initialState,
@@ -31,8 +49,8 @@ const filterSlice = createSlice({
     resetImportantFilter(state) {
       state.importantFilters = {};
     },
-    resetFilters(state, action) {
-      state.filters = action.payload;
+    resetFilters(state) {
+      state.filters = getInitialFilters();
       state.importantFilters = {};
     },
     setFiltersFromQuery(state, action) {

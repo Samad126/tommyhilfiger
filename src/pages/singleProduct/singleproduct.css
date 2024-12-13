@@ -62,7 +62,7 @@
     height: 80%;
 }
 
-#sizes>button {
+.sizes>button {
     padding: 10px 30px;
     background-color: white;
     border-radius: 3px;

@@ -1,19 +1,19 @@
 .custom-accordion-header {
     font-size: 16px;
-    font-weight: bold;
-    color: #1a1a1a;
+    color: var(--light-color);
     margin: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
+#filterAccordionTite {
+    color: var(--light-color);
+}
 
 .accordion-button:focus {
     box-shadow: none;
-
     outline: none;
-
 }
 
 #categAccordion .accordion-button {
@@ -26,7 +26,6 @@
 
 #categAccordion .accordion-button:not(.collapsed) {
     background-color: #f0f0f0;
-
     color: #000;
 
 }
@@ -39,22 +38,17 @@
 
 #categAccordion .accordion-body {
     padding: 15px;
-
     background-color: #fff;
-
 }
 
 #categAccordion .accordion-item {
     border: none;
-
     border-top: 1px solid #e5e5e5;
-
 }
 
 .custom-accordion-body {
     padding: 10px 15px;
     background-color: #f9f9f9;
-
     color: #333;
 }
 
@@ -62,7 +56,7 @@
     background-color: transparent;
     border: none;
     outline: none;
-    padding: 10px 15px;
+    padding: 20px 0;
     display: flex;
     align-items: center;
     text-align: left;
@@ -84,4 +78,11 @@
 .MuiSlider-thumb {
     background-color: #000c2d !important;
     color: #000c2d;
+}
+
+.sizeFilter input,
+#discount {
+    width: 25px;
+    height: 25px;
+    accent-color: var(--light-color);
 }

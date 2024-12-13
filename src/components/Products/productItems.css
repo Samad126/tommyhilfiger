@@ -13,11 +13,6 @@
     position: relative;
 }
 
-.prodItemTitle {
-    font-size: 12px;
-    color: var(--light-color);
-}
-
 .price {
     font-size: 12px;
 }
@@ -70,10 +65,11 @@
     button {
         background-color: var(--light-color);
         color: white;
-        min-width: calc(fit-content + 20);
+        min-width: 120px;
         padding: 10px 8px;
         border-radius: 35px;
         font-size: 14px;
+        text-align: center;
     }
 }
 
@@ -82,14 +78,7 @@
     text-decoration: underline;
     color: #484848;
     font-size: 12px;
-}
-
-.breadcrumb-item>a {
-    color: var(--light-color);
-}
-
-.breadcrumb-item.active {
-    color: var(--light-color);
+    width: 80px;
 }
 
 #desktopFilterSection {

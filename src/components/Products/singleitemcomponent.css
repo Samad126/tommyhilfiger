@@ -1,0 +1,21 @@
+.prodItemTitle {
+    font-size: 12px;
+    color: var(--light-color);
+    font-weight: 500;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+.singleProdPrices {
+    font-weight: 500;
+
+    span {
+        font-weight: 500;
+    }
+}
+
+@media screen and (min-width:768px) {
+    .prodItemTitle{
+        font-size: 14px;
+    }
+}

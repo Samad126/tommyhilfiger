@@ -1,0 +1,25 @@
+.categoryAccordion{
+    height: 90%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.checkoutSection{
+    button{
+        width: 40%;
+        height: 50px;
+        border-radius: 3px;
+    }
+
+    button:first-child{
+        background-color: white;
+        border: 1px solid rgba(128, 128, 128, .2);
+        color: var(--light-color);
+    }
+
+    button:last-child{
+        background-color: var(--light-color);
+        border: 1px solid rgba(128, 128, 128, .2);
+        color: #fff;
+    }
+}

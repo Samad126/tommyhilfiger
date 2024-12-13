@@ -1,6 +1,7 @@
 import { IoCloseSharp, IoStar } from "react-icons/io5"
 import { PiSlidersHorizontal } from "react-icons/pi"
 import { useNavigate, useSearchParams } from "react-router-dom"
+import { getInitialFilters } from "../../redux/filterSlice"
 
 import "./productItems.css"
 import { MdOutlineKeyboardArrowDown } from "react-icons/md"
@@ -20,6 +21,7 @@ function ProductItems() {
 
     const { items } = useSelector((state) => state.products);
     const { filters, initialFilters, importantFilters } = useSelector((state) => state.filter);
+    console.log(filters);
 
     const { catShow, itemShow, selectedCat } = useSelector((state) => state.prodItems.prodState);
 
@@ -50,13 +52,13 @@ function ProductItems() {
                 params.set(key, value);
             }
         }
-        
+
         setSearchParams(params);
     }, [filters, setSearchParams]);
 
-    document.querySelectorAll('.carousel-indicators button, .carousel-control-prev button, .carousel-control-next button').forEach(function(link) {
-        link.addEventListener('click', function(event) {
-            event.preventDefault();
+    document.querySelectorAll('.carousel-indicators button, .carousel-control-prev button, .carousel-control-next button').forEach(function (link) {
+        link.addEventListener('click', function (e) {
+            e.preventDefault();
         });
     });
 
@@ -86,17 +88,6 @@ function ProductItems() {
 
         dispatch(setInitialFilter({ updatedParamsObj, updatedImportantParams }));
     }, [dispatch, searchParams]);
-
-    function getInitialFilters() {
-        const paramsArr = Object.entries(Object.fromEntries(searchParams.entries())).filter((filter) => filter[0] === "categoryId" || filter[0] === "subcategoryId" || filter[0] === "limit");
-
-        let updatedParamsObj = {};
-        paramsArr.forEach(element => {
-            updatedParamsObj[element[0]] = element[1];
-        });
-
-        return updatedParamsObj;
-    }
 
     function handleCatshow() {
         dispatch(setUIState({ key: 'catShow', value: !catShow }));
@@ -137,13 +128,14 @@ function ProductItems() {
                     <button onClick={() => handleCategSwitch(1)} className="d-flex align-items-center justify-content-between">Color <MdOutlineKeyboardArrowDown /></button>
                     <button onClick={() => handleCategSwitch(2)} className="d-flex align-items-center justify-content-between">Discount <MdOutlineKeyboardArrowDown /></button>
                     <button onClick={() => handleCategSwitch(3)} className="d-flex align-items-center justify-content-between">Price <MdOutlineKeyboardArrowDown /></button>
+                    <button onClick={() => handleCategSwitch(null)} className="d-flex align-items-center justify-content-between">All Filters <MdOutlineKeyboardArrowDown /></button>
                 </div>
                 <div className="d-flex align-items-center gap-2 desktopSort">
                     <p className="m-0">{items?.data?.length} Items</p>
                     <div id="seperator"></div>
                     <label htmlFor="sortSelect">Sort By</label>
                     <div className="px-3 selectWrapper">
-                        <select value={filters?.sortOrder} onChange={handleSortChange} name="" id="sortSelect">
+                        <select value={filters?.sortOrder || ""} onChange={handleSortChange} name="" id="sortSelect">
                             <option value="asc">Price Low To High</option>
                             <option value="desc">Price High to Low</option>
                         </select>
@@ -156,7 +148,7 @@ function ProductItems() {
                         <FilterButton key={index} item={item} />
                     ))}
                 </div>
-                {filterCount > 0 && <button onClick={() => dispatch(resetFilters(getInitialFilters()))} id="clearAllBtn">Clear All</button>}
+                {filterCount > 0 && <button onClick={() => dispatch(resetFilters())} id="clearAllBtn">Clear All</button>}
             </div>
             <div className="my-5" id="productItems">
                 {items?.data?.map((item) => (

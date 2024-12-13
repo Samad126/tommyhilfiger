@@ -96,7 +96,7 @@ const CategoryAccordion = ({ active }) => {
             default:
                 break;
         }
-    };    
+    };
 
     const handlePriceChange = (event, newValue) => {
 
@@ -117,7 +117,7 @@ const CategoryAccordion = ({ active }) => {
                     <Accordion.Header>
                         <span className="custom-accordion-header">Size</span>
                     </Accordion.Header>
-                    <Accordion.Body className="custom-accordion-body">
+                    <Accordion.Body className="custom-accordion-body py-2">
                         {["L", "M", "S", "XL", "XXL"].map((sizeItem, idx) => (
                             <SizeFilter
                                 key={idx}
@@ -134,7 +134,7 @@ const CategoryAccordion = ({ active }) => {
                     <Accordion.Header>
                         <span className="custom-accordion-header">Color</span>
                     </Accordion.Header>
-                    <Accordion.Body className="custom-accordion-body">
+                    <Accordion.Body className="custom-accordion-body py-2">
                         {colors.map((colorObj, idx) => (
                             <div key={idx} className="d-flex align-items-center mb-2">
                                 <div
@@ -151,12 +151,17 @@ const CategoryAccordion = ({ active }) => {
                                         cursor: "pointer",
                                         opacity: color.includes(colorObj.color)
                                             ? 1
-                                            : 0.5,
+                                            : 0.1,
                                     }}
                                     title={colorObj.color}
                                     aria-label={`Color filter: ${colorObj.color}`}
                                 ></div>
-                                <label>{colorObj.color}</label>
+                                <label
+                                    onClick={() =>
+                                        handleFilterChange("color", colorObj.color)
+                                    }>
+                                    {colorObj.color}
+                                </label>
                             </div>
                         ))}
                     </Accordion.Body>
@@ -166,8 +171,8 @@ const CategoryAccordion = ({ active }) => {
                     <Accordion.Header>
                         <span className="custom-accordion-header">Discount</span>
                     </Accordion.Header>
-                    <Accordion.Body className="custom-accordion-body">
-                        <div className="mb-2">
+                    <Accordion.Body className="custom-accordion-body py-2">
+                        <div className="mb-2 d-flex align-content-center">
                             <input
                                 type="checkbox"
                                 id="discount"
@@ -188,7 +193,7 @@ const CategoryAccordion = ({ active }) => {
                     <Accordion.Header>
                         <span className="custom-accordion-header">Price</span>
                     </Accordion.Header>
-                    <Accordion.Body className="custom-accordion-body">
+                    <Accordion.Body className="custom-accordion-body py-2">
                         <div className="mb-2">
                             <Box sx={{ width: "90%", padding: "0 10px", margin: "auto" }}>
                                 <Slider

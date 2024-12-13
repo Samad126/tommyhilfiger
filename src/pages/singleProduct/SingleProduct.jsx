@@ -143,7 +143,7 @@ function SingleProduct() {
                                         <h2 className='specificTitle'>Size</h2>
                                         <button className='grayUnderline'>Find my size</button>
                                     </div>
-                                    <div id='sizes' className='d-flex flex-wrap align-item-center gap-2'>
+                                    <div className='d-flex flex-wrap align-item-center gap-2 sizes'>
                                         {item.Size.map((item, index) => (
                                             <button className={`${selectedSize == item ? "selectedItem" : ""}`} onClick={() => sizeSelect(item == selectedSize ? null : item)} key={index}>{item}</button>
                                         ))}
