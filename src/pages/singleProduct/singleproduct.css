@@ -104,8 +104,39 @@
     }
 }
 
+#sliderAndImages{
+    max-width: 400px;
+    margin: auto;
+}
+
+.swiper-pagination-fraction {
+    min-width: 80px !important;
+    left: 10px;
+    background-color: rgba(16, 16, 16, 0.452);
+    border-radius: 35px;
+    padding: 10px;
+    width: initial !important;
+    color: white;
+
+    span{
+        color: white;
+    }
+}
+
+#countSelector:disabled{
+    opacity: .4;
+}
+
+.isNotSelected{
+    border-color: red !important;
+}
+
 @media screen and (min-width:992px) {
-    .mobileDetailed {
+    .itemTitle{
+        font-size: 22px;
+    }
+
+    .mobileDetailed, #sliderAndImages {
         display: none;
     }
 
@@ -115,5 +146,9 @@
 
     #infoPart {
         width: 35%;
+    }
+
+    .singeProductWrapper{
+        display: flex;
     }
 }
