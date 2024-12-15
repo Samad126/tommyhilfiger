@@ -93,7 +93,7 @@ function Cartcanvas({ show, handleClose }) {
                                 <h2>Subtotal <span>{totalItems} {totalItems === 1 ? "Item" : "Items"}</span></h2>
                                 <p className='m-0'>${subtotal.toFixed(2)}</p>
                             </div>
-                            <button id='checkoutBtn'>Review + Checkout</button>
+                            <Link onClick={() =>handleClose("basket")} to={"cart"} id='checkoutBtn'>Review + Checkout</Link>
                             <p id='taxes'>Shipping & Taxes Calculated at Checkout</p>
                         </div>
                     </>

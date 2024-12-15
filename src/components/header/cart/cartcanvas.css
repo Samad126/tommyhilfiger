@@ -108,6 +108,8 @@
 
 #checkoutBtn{
     width: 100%;
+    display: block;
+    text-align: center;
     padding: 15px 0;
     border-radius: 3px;
     background-color: #0e845a;

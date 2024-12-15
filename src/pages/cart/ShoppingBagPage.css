@@ -3,3 +3,14 @@
     --light-color: #00174f;
 }
 
+.fromcartSelection{
+    min-width: 80px;
+}
+
+.lightColorText{
+    color: var(--light-color);
+}
+
+.maxWidthMember{
+    max-width: 488px;
+}

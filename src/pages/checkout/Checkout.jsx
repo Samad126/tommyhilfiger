@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./CheckoutPage.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { IoClose } from "react-icons/io5";
+import { Link } from "react-router-dom";
 
 function CheckoutPage() {
   const [cartItems, setCartItems] = useState([]);
@@ -255,7 +257,7 @@ function CheckoutPage() {
 
         {/* Right Column: Order Summary */}
         <div className="col-12 col-lg-4">
-          <div className="border p-3 orderSummaryWrapper">
+          <div className="p-3 orderSummaryWrapper">
             <h2 className="h5 mb-3 orderSummaryTitle">Order Summary</h2>
             <div className="d-flex justify-content-between mb-2 summaryText">
               <span>Subtotal</span>
@@ -325,7 +327,7 @@ function CheckoutPage() {
           </div>
 
           {/* In Your Shopping Bag */}
-          <h2 className="h6 mt-4 bagTitle">In Your Shopping Bag <a href="#" className="text-decoration-underline smallText">Edit</a></h2>
+          <h2 className="h6 mt-4 bagTitle">In Your Shopping Bag <Link to={'/cart'} href="#" className="text-decoration-underline smallText">Edit</Link></h2>
           {cartItems.map(item => {
             const itemSubtotal = item.price * (1 - item.discount/100) * item.count;
             return (
@@ -339,7 +341,7 @@ function CheckoutPage() {
                     <s>${(item.price * item.count).toFixed(2)}</s> <strong>${itemSubtotal.toFixed(2)}</strong>
                   </p>
                 </div>
-                <a href="#" className="text-decoration-underline smallText" onClick={() => handleRemoveItem(item.id)}>X</a>
+                <a href="#" className="text-decoration-underline smallText" onClick={() => handleRemoveItem(item.id)}><IoClose/></a>
               </div>
             );
           })}
