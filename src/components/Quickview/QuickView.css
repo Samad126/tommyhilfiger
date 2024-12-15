@@ -7,3 +7,13 @@
 .swiper-button-prev, .swiper-button-next{
     scale: .7;
 }
+
+.quickviewInfo::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .quickviewInfo {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }

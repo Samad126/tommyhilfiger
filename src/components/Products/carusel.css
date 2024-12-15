@@ -1,0 +1,19 @@
+.carousel-control-prev-icon {
+    background-color: white;
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%2300174f' stroke-width='1.5' viewBox='0 0 8 8'%3E%3Cpath d='M5.5 0l-4 4 4 4'/%3E%3C/svg%3E");
+    background-size: 50%;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.8;
+    border-radius: 50%;
+}
+
+.carousel-control-next-icon {
+    background-color: white;
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%2300174f' stroke-width='1.5' viewBox='0 0 8 8'%3E%3Cpath d='M2.5 0l4 4-4 4'/%3E%3C/svg%3E");
+    background-size: 50%;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.8;
+    border-radius: 50%;
+}

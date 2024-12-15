@@ -4,6 +4,8 @@ import demoImg from "../../assets/demonigga.jpeg";
 import { useDispatch } from 'react-redux';
 import { setUIState } from '../../redux/productItems';
 
+import "./carusel.css"
+
 function Carusel({ handleClick, images, itemId }) {
     const [index, setIndex] = useState(0);
     const [isQuickViewHovered, setIsQuickViewHovered] = useState(false);
