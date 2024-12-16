@@ -111,6 +111,18 @@ header>div {
     display: none;
 }
 
+#toCartDesk, #toCartMobile{
+    font-size: 12px;
+
+    span{
+        font-size: 12px;
+        padding: 0px;
+        color: var(--light-color);
+        background-color: white !important;
+        text-align: right;
+    }
+}
+
 @media screen and (min-width: 992px) {
     #toHomeImg, #toCartMobile {
         display: none;

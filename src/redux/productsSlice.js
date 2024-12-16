@@ -21,12 +21,20 @@ const productSlice = createSlice({
     items: [],
     status: "idle",
     error: null,
+    cartCount: null,
   },
   reducers: {
     clearProducts: (state) => {
       state.items = [];
       state.status = "idle";
       state.error = null;
+    },
+    updateCartCount: (state) => {
+      const itemCount = (
+        JSON.parse(localStorage.getItem("cartItems")) || []
+      ).reduce((acc, item) => acc + item.count, 0);
+
+      state.cartCount = itemCount;
     },
   },
   extraReducers: (builder) => {
@@ -45,5 +53,5 @@ const productSlice = createSlice({
   },
 });
 
-export const { clearProducts } = productSlice.actions;
+export const { clearProducts, updateCartCount } = productSlice.actions;
 export default productSlice.reducer;

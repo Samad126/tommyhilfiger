@@ -1,8 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { setLoading } from "./mainLoaderSlice";
 
-// const headerImages = [];
-
 export const fetchCategories = createAsyncThunk(
   "categories/fetchCategories",
   async (_, { dispatch, rejectWithValue }) => {
@@ -23,10 +21,6 @@ export const fetchCategories = createAsyncThunk(
     }
   }
 );
-
-function refractorObject(){
-  return {};
-}
 
 const categorySlice = createSlice({
   name: "categories",

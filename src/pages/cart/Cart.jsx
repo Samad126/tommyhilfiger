@@ -3,11 +3,15 @@ import "./ShoppingBagPage.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import members from "../../assets/tommyLittle.webp"
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { updateCartCount } from "../../redux/productsSlice";
 
 function ShoppingBagPage() {
     const [cartItems, setCartItems] = useState([]);
     const [promoCode, setPromoCode] = useState("");
     const [appliedPromo, setAppliedPromo] = useState(false);
+
+    const dispatch = useDispatch();
 
     useEffect(() => {
         const storedItems = JSON.parse(localStorage.getItem("cartItems")) || [];
@@ -32,6 +36,7 @@ function ShoppingBagPage() {
         const updatedCart = cartItems.filter(item => item.id !== id);
         localStorage.setItem("cartItems", JSON.stringify(updatedCart));
         setCartItems(updatedCart);
+        dispatch(updateCartCount());
     };
 
     const subtotal = cartItems.reduce((acc, curr) => acc + curr.price * curr.count * (1 - curr.discount / 100), 0);

@@ -6,8 +6,6 @@ import { Link } from "react-router-dom";
 
 function CheckoutPage() {
   const [cartItems, setCartItems] = useState([]);
-
-  // Form state
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [address, setAddress] = useState("");
@@ -18,14 +16,8 @@ function CheckoutPage() {
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [receiveUpdates, setReceiveUpdates] = useState(true);
-
-  // Validation errors
   const [errors, setErrors] = useState({});
-
-  // Once address is saved, shipping methods can be shown
   const [showShippingMethod, setShowShippingMethod] = useState(false);
-
-  // Promo Code
   const [promoCode, setPromoCode] = useState("");
   const [appliedPromo, setAppliedPromo] = useState(false);
 
@@ -34,7 +26,6 @@ function CheckoutPage() {
     setCartItems(storedItems);
   }, []);
 
-  // Calculate order summary
   const subtotal = cartItems.reduce(
     (acc, curr) => acc + curr.price * curr.count * (1 - curr.discount / 100),
     0
@@ -66,8 +57,6 @@ function CheckoutPage() {
 
   const validateForm = () => {
     let newErrors = {};
-
-    // Required fields
     if (!firstName.trim()) newErrors.firstName = "Please enter a first name.";
     if (!lastName.trim()) newErrors.lastName = "Please enter a last name.";
     if (!address.trim()) newErrors.address = "Please enter an address.";
@@ -76,13 +65,9 @@ function CheckoutPage() {
     if (!zipCode.trim()) newErrors.zip = "Please enter a zip code.";
     if (!email.trim()) newErrors.email = "Please enter an email.";
     if (!phoneNumber.trim()) newErrors.phone = "Please enter a phone number.";
-
-    // Simple email validation
     if (email && !/^\S+@\S+\.\S+$/.test(email)) {
       newErrors.email = "Please enter a valid email address.";
     }
-
-    // Prevent PO boxes
     if (/p(\.|)?o(\.|)? box/i.test(address)) {
       newErrors.address = "Sorry, we cannot ship to P.O. Boxes at this time.";
     }
@@ -113,7 +98,6 @@ function CheckoutPage() {
 
       <div className="row">
         <div className="col-12 col-lg-8 mb-4 mb-lg-0">
-          {/* Shipping To */}
           <h2 className="sectionTitle">Shipping To</h2>
           <p className="smallText text-muted">Sorry, we cannot ship to P.O. Boxes at this time.</p>
           <div className="row mb-3">
@@ -200,7 +184,6 @@ function CheckoutPage() {
             </div>
           </div>
 
-          {/* Contact Information */}
           <h2 className="sectionTitle">Contact Information</h2>
           <div className="mb-3">
             <label>Email*</label>
@@ -241,7 +224,6 @@ function CheckoutPage() {
           </button>
           <p className="smallText">By submitting my information I agree to the <a href="#">Terms and Conditions</a> and <a href="#">Privacy Policy</a>.</p>
 
-          {/* Shipping Method */}
           <h2 className="sectionTitle mt-4">Shipping Method</h2>
           {!showShippingMethod ? (
             <p className="smallText">Please save address above to see available shipping options.</p>
@@ -255,7 +237,6 @@ function CheckoutPage() {
           )}
         </div>
 
-        {/* Right Column: Order Summary */}
         <div className="col-12 col-lg-4">
           <div className="p-3 orderSummaryWrapper">
             <h2 className="h5 mb-3 orderSummaryTitle">Order Summary</h2>
@@ -264,8 +245,8 @@ function CheckoutPage() {
               <span>${subtotal.toFixed(2)}</span>
             </div>
             {extraDiscount > 0 && (
-              <div className="mb-2 smallText" style={{ color:"#00174f" }}>
-                Extra {extraDiscount*100}% Off {extraDiscount===0.40? "$250+" : extraDiscount===0.30?"$150+": "$125+"}
+              <div className="mb-2 smallText" style={{ color: "#00174f" }}>
+                Extra {extraDiscount * 100}% Off {extraDiscount === 0.40 ? "$250+" : extraDiscount === 0.30 ? "$150+" : "$125+"}
               </div>
             )}
             {extraDiscount > 0 && (
@@ -283,7 +264,6 @@ function CheckoutPage() {
               <span>$0.00</span>
             </div>
 
-            {/* Promo Code */}
             <div className="accordion mb-3" id="promoAccordion">
               <div className="accordion-item">
                 <h2 className="accordion-header" id="promoHeading">
@@ -321,27 +301,26 @@ function CheckoutPage() {
             {appliedPromo && <p className="smallText text-success">Promo Applied: -$5.00</p>}
 
             <p className="mb-3 smallText">
-              4 interest-free payments of ${(finalTotal/4).toFixed(2)} with Klarna. <a href="#" className="text-decoration-underline">Learn More</a><br/>
-              or 4 interest-free payments of ${(finalTotal/4).toFixed(2)} with afterpay &rarr;
+              4 interest-free payments of ${(finalTotal / 4).toFixed(2)} with Klarna. <a href="#" className="text-decoration-underline">Learn More</a><br />
+              or 4 interest-free payments of ${(finalTotal / 4).toFixed(2)} with afterpay &rarr;
             </p>
           </div>
 
-          {/* In Your Shopping Bag */}
           <h2 className="h6 mt-4 bagTitle">In Your Shopping Bag <Link to={'/cart'} href="#" className="text-decoration-underline smallText">Edit</Link></h2>
           {cartItems.map(item => {
-            const itemSubtotal = item.price * (1 - item.discount/100) * item.count;
+            const itemSubtotal = item.price * (1 - item.discount / 100) * item.count;
             return (
               <div key={item.id} className="d-flex justify-content-between align-items-start py-3 border-bottom smallCartItem">
-                <img src={item.images[0]} alt={item.name} className="img-fluid cartItemThumb me-2"/>
+                <img src={item.images[0]} alt={item.name} className="img-fluid cartItemThumb me-2" />
                 <div className="flex-grow-1">
-                  <p className="mb-1 smallText" style={{fontWeight:"bold"}}>{item.name}</p>
+                  <p className="mb-1 smallText" style={{ fontWeight: "bold" }}>{item.name}</p>
                   <p className="mb-1 smallText">{item.Colors[0]} | {item.Size[0]}</p>
                   <p className="mb-1 smallText">
-                    Qty: {item.count}<br/>
+                    Qty: {item.count}<br />
                     <s>${(item.price * item.count).toFixed(2)}</s> <strong>${itemSubtotal.toFixed(2)}</strong>
                   </p>
                 </div>
-                <a href="#" className="text-decoration-underline smallText" onClick={() => handleRemoveItem(item.id)}><IoClose/></a>
+                <a href="#" className="text-decoration-underline smallText" onClick={() => handleRemoveItem(item.id)}><IoClose /></a>
               </div>
             );
           })}

@@ -15,6 +15,7 @@ import { Pagination } from 'swiper/modules'
 
 import 'swiper/css';
 import 'swiper/css/pagination';
+import { updateCartCount } from '../../redux/productsSlice'
 
 function SingleProduct() {
     const { id } = useParams();
@@ -73,6 +74,7 @@ function SingleProduct() {
                 localStorage.setItem("cartItems", JSON.stringify(cartItems));
             }
         }
+        dispatch(updateCartCount());
     }
 
 

@@ -44,7 +44,6 @@ function Quickview({ show, handleClose }) {
         const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
         const existingIndex = cartItems.findIndex((cartItem) => cartItem.id === item.id && cartItem.selectedColor === selectedColor && cartItem.selectedSize === selectedSize);
 
-        // Construct cart item object with chosen options
         const newItem = {
             ...item,
             count: selectedCount,
@@ -53,7 +52,6 @@ function Quickview({ show, handleClose }) {
         };
 
         if (existingIndex === -1) {
-            // New item
             if (selectedCount > 5) {
                 alert("Max stock is 5");
             } else {
@@ -62,7 +60,6 @@ function Quickview({ show, handleClose }) {
                 alert("Item added to cart");
             }
         } else {
-            // Item already in cart, update count
             const newCount = cartItems[existingIndex].count + selectedCount;
             if (newCount > 5) {
                 alert("Max stock is 5");
@@ -73,8 +70,6 @@ function Quickview({ show, handleClose }) {
             }
         }
 
-        // Optionally close the offcanvas after adding to cart
-        // handleClose();
     }
 
     return (

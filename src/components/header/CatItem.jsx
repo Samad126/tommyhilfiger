@@ -2,10 +2,10 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom'
 import { resetImportantFilter } from '../../redux/filterSlice';
-import nese from "../../assets/menknits.webp"
+// import nese from "../../assets/menknits.webp"
 
 function CatItem({ catData }) {
-    const { name, slug, Subcategory, id } = catData;
+    const { name, slug, Subcategory, id, singleInfo } = catData;
 
     const dispatch = useDispatch();
 
@@ -13,7 +13,7 @@ function CatItem({ catData }) {
         <li className='cat'>
             <Link onClick={() => (dispatch(resetImportantFilter()))} to={`/products/all?categoryId=${id}&limit=100`}>{name}</Link>
             <div className='d-flex justify-content-center align-items-start moreCat'>
-                <Link><img src={nese} alt="" /></Link>
+                <Link onClick={() => (dispatch(resetImportantFilter()))} to={`/products/all?subcategoryId=${singleInfo.id}&limit=100`}><img src={singleInfo.image} alt="" /></Link>
                 <div className='moreCatLinks'>
                     <h4 className='mb-4'>Featured</h4>
                     <nav>
