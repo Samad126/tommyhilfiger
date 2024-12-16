@@ -63,7 +63,7 @@ function Searchcanvas({ show, handleClose }) {
                 <Offcanvas.Body className='mt-5'>
                     <h2 className='searchTitle'>Popular Categories</h2>
                     <div className='d-flex flex-column gap-3 popularCateg'>
-                        {cats.map((item) => <Link key={item.id} onMouseOver={() => handleHover(item.id)} to={`/products/all?categoryId=${item.id}`}>{item.name}</Link>)}
+                        {cats.map((item) => <Link onClick={() => handleClose("search")} key={item.id} onMouseOver={() => handleHover(item.id)} to={`/products/all?categoryId=${item.id}`}>{item.name}</Link>)}
                     </div>
                     <h2 className='searchTitle'>Featured Best Sellers</h2>
                     <div className='d-flex flex-wrap justify-content-between shortResult'>

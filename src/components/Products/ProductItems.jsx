@@ -93,8 +93,8 @@ function ProductItems() {
         dispatch(setUIState({ key: 'catShow', value: !catShow }));
     }
 
-    function handleItemshow(e, id) {
-        if (e && e.preventDefault) {
+    function handleItemshow(e, id, type) {
+        if (e && e.preventDefault && !type) {
             e.preventDefault();
         }
         dispatch(setUIState({ key: 'itemShow', value: !itemShow }));

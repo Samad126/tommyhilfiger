@@ -179,7 +179,7 @@ function Quickview({ show, handleClose }) {
                                     {selectedSize ? "Add To Cart" : "Select a size"}
                                 </button>
                             </div>
-                            <Link className="d-block text-center mt-4 text-decoration-underline lightColorText" to={`/products/details/${selectedId}`}>
+                            <Link to={`/products/details/${selectedId}`} onClick={(e) => handleClose(e, item.id, 'type')} className="d-block text-center mt-4 text-decoration-underline lightColorText">
                                 View Full Product Details
                             </Link>
                         </div>
