@@ -89,14 +89,14 @@ const CategoryAccordion = ({ active }) => {
                 if (Number(inpValue) === Number(minDefPrice)) {
                     dispatch(setFilter({ key: "minPrice", value: undefined }));
                 } else {
-                    dispatch(setFilter({ key: "minPrice", value }));
+                    dispatch(setFilter({ key: "minPrice", value: inpValue }));
                 }
                 break;
             case "maxPrice":
                 if (Number(inpValue) === Number(maxDefPrice)) {
                     dispatch(setFilter({ key: "maxPrice", value: undefined }));
                 } else {
-                    dispatch(setFilter({ key: "maxPrice", value }));
+                    dispatch(setFilter({ key: "maxPrice", value: inpValue }));
                 }
                 break;
             default:

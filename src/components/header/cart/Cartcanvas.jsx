@@ -3,6 +3,8 @@ import { Offcanvas } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./cartcanvas.css"
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { updateCartCount } from '../../../redux/productsSlice';
 
 function Cartcanvas({ show, handleClose }) {
     const [cartItems, setCartItems] = useState([]);
@@ -11,6 +13,8 @@ function Cartcanvas({ show, handleClose }) {
         const storedItems = JSON.parse(localStorage.getItem("cartItems")) || [];
         setCartItems(storedItems);
     }, [show]);
+
+    const dispatch = useDispatch();
 
     const getDiscountedPrice = (price, discount) => {
         const discounted = price - (price * discount / 100);
@@ -29,12 +33,14 @@ function Cartcanvas({ show, handleClose }) {
             localStorage.setItem("cartItems", JSON.stringify(updatedCart));
             setCartItems(updatedCart);
         }
+        dispatch(updateCartCount());
     }
 
     const handleRemove = (id) => {
         let updatedCart = cartItems.filter(item => item.id !== id);
         localStorage.setItem("cartItems", JSON.stringify(updatedCart));
         setCartItems(updatedCart);
+        dispatch(updateCartCount());
     }
 
     const totalItems = cartItems.reduce((acc, curr) => acc + curr.count, 0);

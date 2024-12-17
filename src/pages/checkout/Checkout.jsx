@@ -4,6 +4,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { IoClose } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import { useDispatch } from "react-redux";
+import { updateCartCount } from "../../redux/productsSlice";
 
 function CheckoutPage() {
   const [cartItems, setCartItems] = useState([]);
@@ -21,6 +23,8 @@ function CheckoutPage() {
   const [showShippingMethod, setShowShippingMethod] = useState(false);
   const [promoCode, setPromoCode] = useState("");
   const [appliedPromo, setAppliedPromo] = useState(false);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const storedItems = JSON.parse(localStorage.getItem("cartItems")) || [];
@@ -91,6 +95,7 @@ function CheckoutPage() {
     const updatedCart = cartItems.filter(item => item.id !== id);
     setCartItems(updatedCart);
     localStorage.setItem("cartItems", JSON.stringify(updatedCart));
+    dispatch(updateCartCount());
   };
 
   return (
