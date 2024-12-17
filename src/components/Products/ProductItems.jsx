@@ -53,6 +53,7 @@ function ProductItems() {
             }
         }
 
+        console.log(params.get("discount"));
         setSearchParams(params);
     }, [filters, setSearchParams]);
 

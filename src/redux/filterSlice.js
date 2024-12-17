@@ -33,7 +33,6 @@ const filterSlice = createSlice({
 
       if (value !== undefined && value !== null) {
         state.filters[key] = value;
-        // console.log(key);
         if (key !== "sortBy" && key !== "sortOrder")
           state.importantFilters[key] = value;
       } else {
@@ -50,7 +49,7 @@ const filterSlice = createSlice({
       state.importantFilters = {};
     },
     resetFilters(state) {
-      state.filters = getInitialFilters();
+      state.filters = { ...getInitialFilters() };
       state.importantFilters = {};
     },
     setFiltersFromQuery(state, action) {

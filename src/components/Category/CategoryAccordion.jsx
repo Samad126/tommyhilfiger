@@ -78,10 +78,13 @@ const CategoryAccordion = ({ active }) => {
                 dispatch(setFilter({ key: "color", value: newColor }));
                 break;
             case "discount":
-                console.log(inpValue);
-                const discountValue = inpValue === "true";
-                dispatch(setFilter({ key: "discount", value: discountValue }));
+                if (inpValue === true) {
+                    dispatch(setFilter({ key: "discount", value: true }));
+                } else {
+                    dispatch(setFilter({ key: "discount", value: undefined }));
+                }
                 break;
+
             case "minPrice":
                 if (Number(inpValue) === Number(minDefPrice)) {
                     dispatch(setFilter({ key: "minPrice", value: undefined }));
@@ -178,10 +181,8 @@ const CategoryAccordion = ({ active }) => {
                             <input
                                 type="checkbox"
                                 id="discount"
-                                checked={discount}
-                                onChange={(e) =>
-                                    handleFilterChange("discount", e.target.checked)
-                                }
+                                checked={!!discount}
+                                onChange={(e) => handleFilterChange("discount", e.target.checked)}
                                 aria-label="Discount filter"
                             />
                             <label htmlFor="discount" className="ms-2">
