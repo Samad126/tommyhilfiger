@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchSingleItem } from "../../redux/singleItemSlice";
 import "./QuickView.css"
 import "../../pages/singleProduct/singleproduct.css"
+import { updateCartCount } from "../../redux/productsSlice";
 
 function Quickview({ show, handleClose }) {
     const { selectedId } = useSelector((state) => state.prodItems.prodState);
@@ -69,7 +70,7 @@ function Quickview({ show, handleClose }) {
                 alert("Item quantity updated in cart");
             }
         }
-
+        dispatch(updateCartCount());
     }
 
     return (
