@@ -4,12 +4,13 @@ import { Offcanvas, Button } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import "./multicanvas.css"
+import { IoClose } from 'react-icons/io5';
 
 
 function MultiLevelOffcanvas({ show, handleClose }) {
     const [selectedCategory, setSelectedCategory] = useState(null);
     const { cats } = useSelector((state) => state.categories);
-    console.log(cats);
+    // console.log(cats);
 
     function handler() {
         handleClose("main");
@@ -52,7 +53,7 @@ function MultiLevelOffcanvas({ show, handleClose }) {
                             textAlign: "right"
                         }}
                     >
-                        ×
+                        <IoClose />
                     </button>
                 </Offcanvas.Header>
 
@@ -73,7 +74,7 @@ function MultiLevelOffcanvas({ show, handleClose }) {
                         <>
                             <ul className="list-unstyled m-0 p-0">
                                 {cats?.map(category => (
-                                    <li key={category.id} className="py-3" style={{cursor: 'pointer' }}>
+                                    <li key={category.id} className="py-3" style={{ cursor: 'pointer' }}>
                                         {category.Subcategory && category.Subcategory.length > 0 ? (
                                             <div onClick={() => setSelectedCategory(category)} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                                                 <span>{category.name}</span>

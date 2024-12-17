@@ -58,7 +58,7 @@ function Header() {
         };
     });
 
-    console.log(updatedCats);
+    // console.log(updatedCats);
 
     function handleOpenClose(type) {
         switch (type) {

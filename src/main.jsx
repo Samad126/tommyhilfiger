@@ -10,7 +10,7 @@ import Products from './pages/products/Products.jsx'
 import SingleProduct from './pages/singleProduct/SingleProduct.jsx'
 import store from './redux/store.js'
 import { Provider } from 'react-redux'
-import { loader as prodLoader } from './productLoader.js'
+// import { loader as prodLoader } from './productLoader.js'
 import Search from './pages/search/Search.jsx'
 import Cart from "./pages/cart/Cart.jsx"
 import CheckoutPage from './pages/checkout/Checkout.jsx'
@@ -26,7 +26,6 @@ const router = createBrowserRouter([
       },
       {
         path: "products",
-        loader: prodLoader,
         children: [
           {
             path: "all",

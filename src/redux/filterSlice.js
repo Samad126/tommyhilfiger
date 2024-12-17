@@ -33,7 +33,7 @@ const filterSlice = createSlice({
 
       if (value !== undefined && value !== null) {
         state.filters[key] = value;
-        console.log(key);
+        // console.log(key);
         if (key !== "sortBy" && key !== "sortOrder")
           state.importantFilters[key] = value;
       } else {

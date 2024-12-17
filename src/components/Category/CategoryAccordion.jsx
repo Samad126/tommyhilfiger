@@ -35,7 +35,6 @@ const CategoryAccordion = ({ active }) => {
         maxPrice = 1000,
     } = useSelector((state) => state.filter.filters);
 
-
     const [localMinPrice, setLocalMinPrice] = useState(
         Number(minPrice)
     );
@@ -44,6 +43,8 @@ const CategoryAccordion = ({ active }) => {
     );
 
     const dispatch = useDispatch();
+
+    console.log(discount);
 
     useEffect(() => {
         console.log(minPrice, maxPrice);
@@ -60,34 +61,36 @@ const CategoryAccordion = ({ active }) => {
         );
     };
 
-    const handleFilterChange = (type, value) => {
+    const handleFilterChange = (type, inpValue) => {
         switch (type) {
             case "size":
                 const updatedSize = Array.isArray(size) ? size : [];
-                const newSize = updatedSize.includes(value)
-                    ? updatedSize.filter((item) => item !== value)
-                    : [...updatedSize, value];
+                const newSize = updatedSize.includes(inpValue)
+                    ? updatedSize.filter((item) => item !== inpValue)
+                    : [...updatedSize, inpValue];
                 dispatch(setFilter({ key: "size", value: newSize }));
                 break;
             case "color":
                 const updatedColor = Array.isArray(color) ? color : [];
-                const newColor = updatedColor.includes(value)
-                    ? updatedColor.filter((item) => item !== value)
-                    : [...updatedColor, value];
+                const newColor = updatedColor.includes(inpValue)
+                    ? updatedColor.filter((item) => item !== inpValue)
+                    : [...updatedColor, inpValue];
                 dispatch(setFilter({ key: "color", value: newColor }));
                 break;
             case "discount":
-                dispatch(setFilter({ key: "discount", value }));
+                console.log(inpValue);
+                const discountValue = inpValue === "true";
+                dispatch(setFilter({ key: "discount", value: discountValue }));
                 break;
             case "minPrice":
-                if (Number(value) === Number(minDefPrice)) {
+                if (Number(inpValue) === Number(minDefPrice)) {
                     dispatch(setFilter({ key: "minPrice", value: undefined }));
                 } else {
                     dispatch(setFilter({ key: "minPrice", value }));
                 }
                 break;
             case "maxPrice":
-                if (Number(value) === Number(maxDefPrice)) {
+                if (Number(inpValue) === Number(maxDefPrice)) {
                     dispatch(setFilter({ key: "maxPrice", value: undefined }));
                 } else {
                     dispatch(setFilter({ key: "maxPrice", value }));
@@ -99,7 +102,6 @@ const CategoryAccordion = ({ active }) => {
     };
 
     const handlePriceChange = (event, newValue) => {
-
         setLocalMinPrice(Number(newValue[0]));
         setLocalMaxPrice(Number(newValue[1]));
     };

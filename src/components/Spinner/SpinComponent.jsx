@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 
 function SpinComponent() {
     const { loading } = useSelector((state) => state.mainLoader);
-    console.log(loading);
+    // console.log(loading);
 
     return (
         <div className={`position-relative ${!loading && 'd-none'}`}>

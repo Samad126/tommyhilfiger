@@ -16,6 +16,7 @@ import { Pagination } from 'swiper/modules'
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { updateCartCount } from '../../redux/productsSlice'
+import { Helmet } from 'react-helmet'
 
 function SingleProduct() {
     const { id } = useParams();
@@ -83,6 +84,9 @@ function SingleProduct() {
         <>
             {status == "loading"
                 ? <div className={`position-relative`}>
+                    <Helmet>
+                        <title>Loading...</title>
+                    </Helmet>
                     <div className='bg-white position-fixed min-vw-100 min-vh-100 top-0 start-0 z-3'>
                     </div>
                     <div className='position-fixed start-0 top-0 min-vh-100 d-flex justify-content-center align-items-center z-3 w-100'>
@@ -91,7 +95,9 @@ function SingleProduct() {
                 </div> :
                 status == "succeeded" ?
                     <main className='mainContainer'>
-
+                        <Helmet>
+                            <title>{item?.name} | Tommy Hilfiger USA</title>
+                        </Helmet>
                         {/* <div className='px-3'>
                             <Breadcrumb>
                                 <Breadcrumb.Item href="#">Home</Breadcrumb.Item>
