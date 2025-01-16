@@ -44,10 +44,7 @@ const CategoryAccordion = ({ active }) => {
 
     const dispatch = useDispatch();
 
-    console.log(discount);
-
     useEffect(() => {
-        console.log(minPrice, maxPrice);
 
         const min = Number(minPrice);
         const max = Number(maxPrice);

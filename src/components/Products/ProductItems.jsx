@@ -21,13 +21,11 @@ function ProductItems() {
 
     const { items } = useSelector((state) => state.products);
     const { filters, initialFilters, importantFilters } = useSelector((state) => state.filter);
-    // console.log(filters);
 
     const { catShow, itemShow, selectedCat } = useSelector((state) => state.prodItems.prodState);
 
     const firstFilterRef = useRef(true);
 
-    // console.log(initialFilters, searchParams);
     useEffect(() => {
         if (!firstFilterRef.current) {
             const params = searchParams.toString();
@@ -53,7 +51,6 @@ function ProductItems() {
             }
         }
 
-        console.log(params.get("discount"));
         setSearchParams(params);
     }, [filters, setSearchParams]);
 

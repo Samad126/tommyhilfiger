@@ -37,7 +37,7 @@ function Carusel({ handleClick, images, itemId }) {
             >
                 {images.map((img, index) => (
                     <Carousel.Item key={index}>
-                        <img className='w-100' src={img} alt="img" />
+                        <img className='caruselImage' src={img} alt="img" />
                     </Carousel.Item>
                 ))}
             </Carousel>

@@ -10,7 +10,6 @@ import { IoClose } from 'react-icons/io5';
 function MultiLevelOffcanvas({ show, handleClose }) {
     const [selectedCategory, setSelectedCategory] = useState(null);
     const { cats } = useSelector((state) => state.categories);
-    // console.log(cats);
 
     function handler() {
         handleClose("main");

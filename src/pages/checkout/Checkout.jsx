@@ -316,10 +316,10 @@ function CheckoutPage() {
             </div>
 
             <h2 className="h6 mt-4 bagTitle">In Your Shopping Bag <Link to={'/cart'} href="#" className="text-decoration-underline smallText">Edit</Link></h2>
-            {cartItems.map(item => {
+            {cartItems.map((item, index) => {
               const itemSubtotal = item.price * (1 - item.discount / 100) * item.count;
               return (
-                <div key={item.id} className="d-flex justify-content-between align-items-start py-3 border-bottom smallCartItem">
+                <div key={index} className="d-flex justify-content-between align-items-start py-3 border-bottom smallCartItem">
                   <img src={item.images[0]} alt={item.name} className="img-fluid cartItemThumb me-2" />
                   <div className="flex-grow-1">
                     <p className="mb-1 smallText" style={{ fontWeight: "bold" }}>{item.name}</p>

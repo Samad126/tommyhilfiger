@@ -55,8 +55,13 @@
         color: var(--light-color);
     }
 
-    p:last-child {
+    .discountPrice {
         margin: 0;
+        
+
+        span{
+            text-decoration: line-through;
+        }
     }
 }
 

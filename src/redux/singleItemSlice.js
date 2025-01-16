@@ -11,7 +11,6 @@ export const fetchSingleItem = createAsyncThunk(
         throw new Error("Failed to fetch the item");
       }
       const data = await response.json();
-      console.log(data);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -39,7 +38,6 @@ const singleItemSlice = createSlice({
         state.status = "loading";
       })
       .addCase(fetchSingleItem.fulfilled, (state, action) => {
-        console.log(action.payload);
         state.status = "succeeded";
         state.item = action.payload;
       })

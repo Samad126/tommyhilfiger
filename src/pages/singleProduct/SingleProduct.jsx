@@ -23,8 +23,6 @@ function SingleProduct() {
 
     const { item, status } = useSelector((state) => state.singleItem);
 
-    console.log(item);
-
     const [selectedSize, setSelectedSize] = useState(null);
     const [selectedCount, setSelectedCount] = useState(1);
     const [selectedColor, setSelectedColor] = useState(item?.Colors[0]);
@@ -34,7 +32,6 @@ function SingleProduct() {
 
     useEffect(() => {
         dispatch(setLoading(true));
-        console.log(id);
         dispatch(fetchSingleItem(id));
         dispatch(setLoading(false));
     }, [id]);
@@ -42,8 +39,6 @@ function SingleProduct() {
     useEffect(() => {
         setSelectedColor(item?.Colors[0]);
     }, [item]);
-
-    console.log(selectedColor, selectedSize, selectedCount);
 
     function sizeSelect(size) {
         setSelectedSize(size);
@@ -79,7 +74,6 @@ function SingleProduct() {
     }
 
 
-    console.log(status);
     return (
         <>
             {status == "loading"

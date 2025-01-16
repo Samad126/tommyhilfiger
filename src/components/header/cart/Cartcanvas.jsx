@@ -58,8 +58,8 @@ function Cartcanvas({ show, handleClose }) {
                 {cartItems.length > 0 ? (
                     <>
                         <div id='cartItems' className='d-flex flex-column gap-5 overflow-auto'>
-                            {cartItems.map((item) => (
-                                <div key={item.id} className='d-flex justify-content-between'>
+                            {cartItems.map((item, index) => (
+                                <div key={index} className='d-flex justify-content-between gap-4'>
                                     <Link to={`/products/details/${item.id}`} onClick={() => handleClose("basket")}>
                                         <img className='cartImg' src={item.images[0]} alt={item.name} />
                                     </Link>
@@ -67,9 +67,9 @@ function Cartcanvas({ show, handleClose }) {
                                         <div className='cartItemInfo'>
                                             <h4>{item.name}</h4>
                                             <p className='sizeColor'>
-                                                {item.Colors?.[0] || "Color"} | {item.Size?.[0] || "Size"}
+                                                {item.selectedColor || "Color"} | {item.selectedSize || "Size"}
                                             </p>
-                                            <p className='discountPrice'>
+                                            <p className='discountPrice d-flex gap-3'>
                                                 ${item.price.toFixed(2)}
                                                 <span>${getDiscountedPrice(item.price, item.discount)}</span>
                                             </p>

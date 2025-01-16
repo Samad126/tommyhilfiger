@@ -81,10 +81,10 @@ function ShoppingBagPage() {
                     <div className="col-12 col-lg-7">
                         <h2 className="lightColorText fw-bolder">Shopping Bag <span className="fs-6">({totalItems} {totalItems === 1 ? 'item' : 'items'})</span></h2>
                         <p className="lightColorText">Items in bag are not reserved and may sell out. Order now.</p>
-                        {cartItems.length > 0 ? cartItems.map(item => {
+                        {cartItems.length > 0 ? cartItems.map((item, index) => {
                             const itemSubtotal = item.price * (1 - item.discount / 100) * item.count;
                             return (
-                                <div key={item.id} className="py-4 border-top">
+                                <div key={index} className="py-4 border-top">
                                     <div className="d-flex gap-3 mb-4 mb-md-0">
                                         <img style={{ height: "150px" }} src={item.images[0]} alt={item.name} />
                                         <div className="w-100">
@@ -92,7 +92,7 @@ function ShoppingBagPage() {
                                                 <div className="d-flex flex-column justify-content-between h-100 flex-md-row align-items-md-start">
                                                     <div>
                                                         <h4 className="fs-6 lightColorText fw-normal">{item.name}</h4>
-                                                        <p>{item.Colors[0]} | {item.Size[0]}</p>
+                                                        <p>{item.selectedColor} | {item.selectedSize}</p>
                                                     </div>
                                                     {/* <p>In Stock: Ships in 1-2 business days</p> */}
                                                     <div className="d-flex justify-content-between align-items-start flex-md-column align-items-md-center">

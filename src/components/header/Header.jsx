@@ -58,8 +58,6 @@ function Header() {
         };
     });
 
-    // console.log(updatedCats);
-
     function handleOpenClose(type) {
         switch (type) {
             case "basket":
