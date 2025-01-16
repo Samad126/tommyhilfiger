@@ -19,9 +19,15 @@ function ShoppingBagPage() {
         setCartItems(storedItems);
     }, []);
 
-    const handleQuantityChange = (id, newCount) => {
+    const handleQuantityChange = (id, color, size, newCount) => {
         const updatedCart = [...cartItems];
-        const index = updatedCart.findIndex(item => item.id === id);
+        const index = updatedCart.findIndex(
+            (item) =>
+                item.id === id &&
+                item.selectedColor === color &&
+                item.selectedSize === size
+        );
+
         if (index !== -1) {
             if (parseInt(newCount) === 0) {
                 updatedCart.splice(index, 1);
@@ -33,12 +39,21 @@ function ShoppingBagPage() {
         }
     };
 
-    const handleRemove = (id) => {
-        const updatedCart = cartItems.filter(item => item.id !== id);
+    const handleRemove = (id, color, size) => {
+        const updatedCart = cartItems.filter(
+            (item) =>
+                !(
+                    item.id === id &&
+                    item.selectedColor === color &&
+                    item.selectedSize === size
+                )
+        );
+
         localStorage.setItem("cartItems", JSON.stringify(updatedCart));
         setCartItems(updatedCart);
         dispatch(updateCartCount());
     };
+
 
     const subtotal = cartItems.reduce((acc, curr) => acc + curr.price * curr.count * (1 - curr.discount / 100), 0);
     const totalItems = cartItems.reduce((acc, curr) => acc + curr.count, 0);
@@ -95,13 +110,13 @@ function ShoppingBagPage() {
                                                         <p>{item.selectedColor} | {item.selectedSize}</p>
                                                     </div>
                                                     {/* <p>In Stock: Ships in 1-2 business days</p> */}
-                                                    <div className="d-flex justify-content-between align-items-start flex-md-column align-items-md-center">
+                                                    <div className="d-flex justify-content-between align-items-start flex-md-column align-items-md-end">
                                                         <div className='selectSection d-flex flex-column w-25 fromcartSelection'>
                                                             <label htmlFor={`count-${item.id}`} className="form-label" style={{ fontSize: "0.8em", color: "#00174f" }}>Qty</label>
                                                             <select
                                                                 id={`count-${item.id}`}
                                                                 value={item.count}
-                                                                onChange={(e) => handleQuantityChange(item.id, e.target.value)}
+                                                                onChange={(e) => handleQuantityChange(item.id, item.selectedColor, item.selectedSize, e.target.value)}
                                                                 style={{ width: "100%", height: "100%", border: "1px solid #00174f", padding: "20px 15px 5px 15px", color: "#00174f", fontSize: "0.9em" }}
                                                             >
                                                                 {[...Array(5)].map((_, i) => (
@@ -115,16 +130,14 @@ function ShoppingBagPage() {
                                                     </div>
                                                 </div>
                                                 <div className="d-none d-md-flex justify-content-between">
-                                                    <a className="text-decoration-underline text-body-secondary" href="#">Edit</a>
                                                     <div className="d-flex gap-3">
-                                                        <a className="text-decoration-underline text-body-secondary" href="#" onClick={() => handleRemove(item.id)}>Remove</a>
+                                                        <a className="text-decoration-underline text-body-secondary" href="#" onClick={() => handleRemove(item.id, item.selectedColor, item.selectedSize)}>Remove</a>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div className="d-flex justify-content-between d-md-none">
-                                        <a className="text-decoration-underline text-body-secondary" href="#">Edit</a>
                                         <div className="d-flex gap-3">
                                             <a className="text-decoration-underline text-body-secondary" href="#" onClick={() => handleRemove(item.id)}>Remove</a>
                                         </div>
