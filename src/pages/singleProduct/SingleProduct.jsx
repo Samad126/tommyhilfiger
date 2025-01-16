@@ -52,13 +52,20 @@ function SingleProduct() {
         }
 
         const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-        const isAvailable = cartItems.findIndex((cart) => cart.id === item.id);
+        const isAvailable = cartItems.findIndex((cartItem) => cartItem.id === item.id && cartItem.selectedColor === selectedColor && cartItem.selectedSize === selectedSize);
 
         if (isAvailable === -1) {
             if (selectedCount > 5) {
                 alert("Max stock is 5");
             } else {
-                cartItems.push({ ...item, count: selectedCount });
+                cartItems.push(
+                    {
+                        ...item,
+                        count: selectedCount,
+                        selectedColor,
+                        selectedSize
+                    }
+                );
                 localStorage.setItem("cartItems", JSON.stringify(cartItems));
             }
         } else {

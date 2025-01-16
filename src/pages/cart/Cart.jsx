@@ -117,7 +117,6 @@ function ShoppingBagPage() {
                                                 <div className="d-none d-md-flex justify-content-between">
                                                     <a className="text-decoration-underline text-body-secondary" href="#">Edit</a>
                                                     <div className="d-flex gap-3">
-                                                        <a className="text-decoration-underline text-body-secondary" href="#">Save for Later</a>
                                                         <a className="text-decoration-underline text-body-secondary" href="#" onClick={() => handleRemove(item.id)}>Remove</a>
                                                     </div>
                                                 </div>
@@ -127,7 +126,6 @@ function ShoppingBagPage() {
                                     <div className="d-flex justify-content-between d-md-none">
                                         <a className="text-decoration-underline text-body-secondary" href="#">Edit</a>
                                         <div className="d-flex gap-3">
-                                            <a className="text-decoration-underline text-body-secondary" href="#">Save for Later</a>
                                             <a className="text-decoration-underline text-body-secondary" href="#" onClick={() => handleRemove(item.id)}>Remove</a>
                                         </div>
                                     </div>
