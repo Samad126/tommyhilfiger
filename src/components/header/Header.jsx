@@ -87,8 +87,12 @@ function Header() {
                         </Link>
                         <Link to={"/"} id='desltopMainLogo'><img src={desktopLogo} alt="desktop logo" /></Link>
                         <div className='d-flex gap-3' id='searchCatBtns'>
-                            <button onClick={() => handleOpenClose("search")}><FaMagnifyingGlass /></button>
-                            <button id='profileBtn'><IoPersonOutline /></button>
+                            <button onClick={() => handleOpenClose("search")} aria-label="Search">
+                                <FaMagnifyingGlass />
+                            </button>
+                            <button id='profileBtn' aria-label="Profile">
+                                <IoPersonOutline />
+                            </button>
                             <Link className='position-relative' to={"cart"} id='toCartMobile'>
                                 <HiOutlineShoppingBag />
                                 <span className="position-absolute top-0 start-75 translate-middle badge bg-danger">
@@ -103,7 +107,9 @@ function Header() {
                                     <span className="visually-hidden">unread messages</span>
                                 </span>
                             </button>
-                            <button onClick={() => handleOpenClose("main")} id='hamburgerBtn'><GiHamburgerMenu /></button>
+                            <button id='hamburgerBtn' onClick={() => handleOpenClose("menu")} aria-label="Menu">
+                                <GiHamburgerMenu />
+                            </button>
                         </div>
                     </div>
                     <div id='desktopNav'>

@@ -33,9 +33,9 @@ function DynamicSection({ header, desc, sectionLink, links, video, img1, img2, i
         </Link>
       </div>
       <div className="sectionMain">
-        {!isDynamic && <h6 className="whiteTxt" >{secondTitle}</h6>}
-        <h2 className="whiteTxt">{header}</h2>
-        <p className="whiteTxt">{desc}</p>
+        <h2>{header}</h2>
+        <p>{desc}</p>
+        {secondTitle && <h3 className="whiteTxt">{secondTitle}</h3>}
         <div id="sectionCenterLinks">
           <Link to={sectionLink} onClick={() => (dispatch(resetImportantFilter()))} className="whiteTxt bordered mx-auto">{buttonText}</Link>
         </div>
@@ -43,7 +43,11 @@ function DynamicSection({ header, desc, sectionLink, links, video, img1, img2, i
       <div id="sectionBottomLinks">
         <Link to={sectionLink} onClick={() => (dispatch(resetImportantFilter()))} className="whiteTxt bordered">{buttonText}</Link>
       </div>
-      {isDynamic ? <button onClick={handlePlay} id="toggler">{isPlaying ? <IoPauseOutline style={{ transform: "scale(1.5)" }} /> : <FaPlay />}</button> : ""}
+      {video && (
+        <button id="toggler" onClick={handlePlay} aria-label={isPlaying ? "Pause video" : "Play video"}>
+          {isPlaying ? <IoPauseOutline /> : <FaPlay />}
+        </button>
+      )}
     </section>
   )
 }

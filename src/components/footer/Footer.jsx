@@ -18,7 +18,7 @@ function Footer() {
             <div id="imgJoin" className="d-flex align-items-start justify-content-center">
               <img src={footerHilfigerLogo} alt="tommy logo" />
               <div id="joinContent" className="d-flex align-items-start position-relative mb-5">
-                <h4>JOIN</h4>
+                <h3>JOIN</h3>
                 <picture>
                   <source srcSet={tommyLittle} media="(max-width: 767px)" />
                   <source srcSet={tommyBig} media="(min-width: 768px)" />
@@ -96,14 +96,14 @@ function Footer() {
         <div id="bottomLinks">
           <img src={desktopLogo} alt="tommy logo" />
           <div className="d-flex flex-wrap">
-            <Link>Terms & Conditions</Link>
-            <Link>Privacy Policy</Link>
-            <Link>Privacy Commitment</Link>
-            <Link>Interest Based Ads</Link>
-            <Link>Do Not Sell or Share My Personal Information</Link>
-            <Link>PVH Corp. Joint Modern Slavery Act Statement</Link>
-            <Link>Brand Protection</Link>
-            <Link>Accessibility</Link>
+            <Link className="footer-link">Terms & Conditions</Link>
+            <Link className="footer-link">Privacy Policy</Link>
+            <Link className="footer-link">Privacy Commitment</Link>
+            <Link className="footer-link">Interest Based Ads</Link>
+            <Link className="footer-link">Do Not Sell or Share My Personal Information</Link>
+            <Link className="footer-link">PVH Corp. Joint Modern Slavery Act Statement</Link>
+            <Link className="footer-link">Brand Protection</Link>
+            <Link className="footer-link">Accessibility</Link>
           </div>
         </div>
         <p>Web ID: 463934703</p>

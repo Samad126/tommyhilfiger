@@ -7,7 +7,7 @@ footer {
     padding: 24px;
 }
 
-footer > div:nth-child(2){
+footer>div:nth-child(2) {
     max-width: 1450px;
     margin: auto;
 }
@@ -179,18 +179,19 @@ footer > div:nth-child(2){
         }
     }
 
-    #accordionSection, .footLinksMobile{
+    #accordionSection,
+    .footLinksMobile {
         display: none !important;
     }
 
-    #desktopFooterList{
+    #desktopFooterList {
         display: flex;
         justify-content: space-between;
         padding: 56px 0;
         border-top: 1px solid var(--light-color);
         /* width: 85%; */
 
-        a{
+        a {
             color: var(--light-color);
             font-weight: 400;
         }
@@ -200,7 +201,7 @@ footer > div:nth-child(2){
             flex-direction: column;
             gap: 16px;
 
-            div{
+            div {
                 flex-direction: row;
                 gap: 40px;
             }
@@ -214,5 +215,30 @@ footer > div:nth-child(2){
         max-width: 1000px;
         gap: 40px;
         margin: 80px auto;
+    }
+}
+
+/* Add proper touch target sizing for footer links */
+.footer-link {
+    display: inline-block;
+    padding: 12px 16px;
+    margin: 4px;
+    min-height: 48px;
+    min-width: 48px;
+    font-size: 14px;
+    color: var(--light-color);
+}
+
+/* Ensure proper spacing between footer links */
+#bottomLinks .d-flex {
+    gap: 8px;
+    justify-content: flex-start;
+}
+
+@media screen and (max-width: 767px) {
+    .footer-link {
+        padding: 12px 8px;
+        margin: 2px;
+        font-size: 13px;
     }
 }
